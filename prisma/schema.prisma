@@ -1,0 +1,612 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum OrganizationType {
+  BANK
+  CREDIT_UNION
+  COMPANY
+  SERVICER
+}
+
+enum UserRole {
+  ADMIN
+  AGENT
+}
+
+enum DebtorType {
+  INDIVIDUAL
+  COMPANY
+}
+
+enum ClaimStatus {
+  ACTIVE
+  IN_NEGOTIATION
+  PLAN_AGREED
+  SETTLED
+  WRITTEN_OFF
+  LEGAL_ESCALATION
+}
+
+enum AnalysisStatus {
+  PENDING
+  COMPLETE
+  FAILED
+  NOT_ANALYZED
+}
+
+enum RiskTier {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum CollectionApproach {
+  FRIENDLY_REMINDER
+  FIRM_NOTICE
+  SETTLEMENT_OFFER
+  INSTALLMENT_PLAN_PROPOSAL
+  LEGAL_ESCALATION_RECOMMENDED
+  MONITOR_ONLY
+}
+
+enum Tone {
+  EMPATHETIC
+  NEUTRAL_FIRM
+  FORMAL_FINAL_NOTICE
+}
+
+enum Channel {
+  EMAIL
+  SMS
+  PHONE
+  LETTER
+  PORTAL_MESSAGE
+  AI_VOICE_CALL
+  OPERATOR_CALL
+}
+
+enum CommunicationStatus {
+  PENDING
+  SENT
+  FAILED
+  SKIPPED
+  DRAFT_PENDING_REVIEW
+  APPROVED
+  REJECTED
+}
+
+enum MailClass {
+  STANDARD
+  REGISTERED
+}
+
+enum ProposerType {
+  DEBTOR
+  STAFF
+}
+
+enum DepositMatchStatus {
+  UNMATCHED
+  MATCHED
+  PARTIAL
+  OVERPAID
+  MISENTERED
+  REVERSED
+}
+
+enum PaymentScheduleItemStatus {
+  PENDING
+  PAID
+  OVERDUE
+  WAIVED
+}
+
+enum ProposalStatus {
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  COUNTERED
+}
+
+enum ActivityType {
+  STATUS_CHANGE
+  COMMUNICATION_SENT
+  NOTE_ADDED
+  PROPOSAL_SUBMITTED
+  PROPOSAL_REVIEWED
+  AI_ANALYSIS_RUN
+  PORTAL_ACCESSED
+  COMPLIANCE_FLAG_SET
+  COMPLIANCE_FLAG_CLEARED
+  CALL_PLACED
+  CALL_NO_ANSWER
+  CALL_CONNECTED_DEBTOR
+  CALL_CONNECTED_FAMILY
+  DEBTOR_CALLBACK
+  PAYMENT_PROMISE_MADE
+  PAYMENT_PROMISE_BROKEN
+  PAYMENT_RECEIVED
+  SMS_DELIVERED
+  SMS_UNDELIVERED
+  MAIL_DELIVERED
+  MAIL_RETURNED
+}
+
+enum LegalTitleType {
+  JUDGMENT
+  PAYMENT_ORDER
+  NOTARIZED_DEED
+}
+
+enum IdentityVerificationStatus {
+  UNVERIFIED
+  PARTIAL
+  VERIFIED
+}
+
+enum IdentityVerificationMethod {
+  PHONE_LAST4
+  DATE_OF_BIRTH
+  CLAIM_REFERENCE
+  SECRET_QUESTION
+  OTP
+}
+
+enum ComplianceFlagType {
+  ATTORNEY_INVOLVED
+  BANKRUPTCY_OR_REHAB
+  DEBT_DISPUTE
+  DECEASED
+  INHERITANCE_PENDING
+  IDENTITY_UNVERIFIED
+  COMPLAINT_IN_PROGRESS
+  MISBILLING_SUSPECTED
+  STATUTE_REVIEW
+  PHONE_PROHIBITED
+  MAIL_PROHIBITED
+  SMS_PROHIBITED
+  ALL_AUTOMATION_PROHIBITED
+}
+
+enum RecoveryOutcomeType {
+  PARTIAL
+  FULL
+  UNKNOWN
+}
+
+enum ConfidenceLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+// ---------------------------------------------------------------------------
+// Models
+// ---------------------------------------------------------------------------
+
+model Organization {
+  id        String           @id @default(cuid())
+  name      String
+  type      OrganizationType
+  createdAt DateTime         @default(now())
+
+  users            User[]
+  debtors          Debtor[]
+  claims           Claim[]
+  dunningRules     DunningRule[]
+  messageTemplates MessageTemplate[]
+  negotiationRule  NegotiationRule?
+  incomingDeposits IncomingDeposit[]
+}
+
+model User {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  email          String       @unique
+  passwordHash   String
+  name           String
+  role           UserRole
+  createdAt      DateTime     @default(now())
+
+  assignedClaims         Claim[]                  @relation("AssignedAgent")
+  notes                  Note[]
+  activityLogs           ActivityLog[]
+  reviewedProposals      PaymentPlanProposal[]
+  setComplianceFlags     ComplianceFlag[]         @relation("SetComplianceFlags")
+  clearedComplianceFlags ComplianceFlag[]         @relation("ClearedComplianceFlags")
+  approvedCommunications ScheduledCommunication[] @relation("ApprovedCommunications")
+  confirmedPayments      Payment[]                @relation("ConfirmedPayments")
+  reversedPayments       Payment[]                @relation("ReversedPayments")
+  resolvedDeposits       IncomingDeposit[]        @relation("ResolvedDeposits")
+
+  @@index([organizationId])
+}
+
+model Debtor {
+  id                         String                      @id @default(cuid())
+  organizationId             String
+  organization               Organization                @relation(fields: [organizationId], references: [id])
+  type                       DebtorType
+  name                       String
+  nameKana                   String?
+  email                      String?
+  phone                      String?
+  addressLine                String?
+  ageBracket                 String?
+  occupation                 String?
+  industry                   String?
+  employeeCountBracket       String?
+  yearsInBusiness            Int?
+  employerName               String?
+  dateOfBirth                DateTime?
+  secretQuestion             String?
+  secretAnswer               String?
+  identityVerificationStatus IdentityVerificationStatus  @default(UNVERIFIED)
+  identityVerifiedAt         DateTime?
+  identityVerificationMethod IdentityVerificationMethod?
+  createdAt                  DateTime                    @default(now())
+
+  claims Claim[]
+
+  @@index([organizationId])
+}
+
+model Claim {
+  id                    String         @id @default(cuid())
+  organizationId        String
+  organization          Organization   @relation(fields: [organizationId], references: [id])
+  debtorId              String
+  debtor                Debtor         @relation(fields: [debtorId], references: [id])
+  assignedAgentId       String?
+  assignedAgent         User?          @relation("AssignedAgent", fields: [assignedAgentId], references: [id])
+  claimType             String
+  principalAmount       Int
+  currentBalance        Int
+  currency              String         @default("JPY")
+  originalDueDate       DateTime
+  status                ClaimStatus    @default(ACTIVE)
+  hasCollateral         Boolean        @default(false)
+  collateralDescription String?
+  priorDefaultCount     Int            @default(0)
+  latestAnalysisId      String?        @unique
+  latestAnalysis        ClaimAnalysis? @relation("LatestAnalysis", fields: [latestAnalysisId], references: [id])
+
+  // Ledger detail (原債権者/譲渡履歴/内訳/期日管理)
+  originalCreditorName  String?
+  claimAcquiredAt       DateTime?
+  acquisitionPrice      Int?
+  interestAmount        Int              @default(0)
+  lateDamageAmount      Int              @default(0)
+  contractDate          DateTime?
+  statuteLimitationDate DateTime?
+  legalTitles           LegalTitleType[] @default([])
+  hasGuarantor          Boolean          @default(false)
+  guarantorDescription  String?
+  virtualAccountNumber  String?          @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payments                Payment[]
+  analyses                ClaimAnalysis[]          @relation("ClaimAnalyses")
+  dunningRule             DunningRule?             @relation(fields: [dunningRuleId], references: [id])
+  dunningRuleId           String?
+  scheduledCommunications ScheduledCommunication[]
+  accessTokens            NegotiationAccessToken[]
+  proposals               PaymentPlanProposal[]
+  activityLogs            ActivityLog[]
+  notes                   Note[]
+  complianceFlags         ComplianceFlag[]
+  scheduleItems           PaymentScheduleItem[]
+
+  @@index([organizationId])
+  @@index([status])
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  claimId   String
+  claim     Claim    @relation(fields: [claimId], references: [id])
+  amount    Int
+  paidAt    DateTime
+  source    String?
+  createdAt DateTime @default(now())
+
+  payerName           String?
+  incomingDepositId   String?
+  incomingDeposit     IncomingDeposit?   @relation(fields: [incomingDepositId], references: [id])
+  allocationBreakdown Json?
+  matchStatus         DepositMatchStatus @default(MATCHED)
+
+  confirmedByUserId String?
+  confirmedByUser   User?     @relation("ConfirmedPayments", fields: [confirmedByUserId], references: [id])
+  confirmedAt       DateTime?
+
+  reversedAt       DateTime?
+  reversedByUserId String?
+  reversedByUser   User?     @relation("ReversedPayments", fields: [reversedByUserId], references: [id])
+  reversalReason   String?
+
+  scheduleItem PaymentScheduleItem?
+
+  @@index([claimId])
+}
+
+model ClaimAnalysis {
+  id                           String              @id @default(cuid())
+  claimId                      String
+  claim                        Claim               @relation("ClaimAnalyses", fields: [claimId], references: [id])
+  status                       AnalysisStatus      @default(PENDING)
+  riskTier                     RiskTier?
+  recoveryProbability          Float?
+  recoveryProbabilityRationale String?
+  recommendedApproach          CollectionApproach?
+  suggestedTone                Tone?
+  suggestedChannel             Channel?
+  reasoning                    String?
+  keyRiskFactors               String[]            @default([])
+  suggestedNextActionDays      Int?
+  rawModelResponse             Json?
+  errorMessage                 String?
+  modelUsed                    String?
+
+  // Score explainability (項目6)
+  recoveryWindowDays        Int?
+  expectedRecoveryType      RecoveryOutcomeType?
+  confidenceLevel           ConfidenceLevel?
+  dataInsufficient          Boolean              @default(false)
+  dataInsufficiencyNote     String?
+  expectedRecoveryAmount12m Int?
+
+  // 4-metric breakdown (項目7)
+  contactabilityScore     Float?
+  paymentWillingnessScore Float?
+  paymentCapacityScore    Float?
+  expectedRecoveryAmount  Int?
+  expectedCollectionCost  Int?
+
+  // Multiple recommended actions (項目8)
+  recommendedActions Json?
+
+  createdAt DateTime @default(now())
+
+  latestForClaim Claim? @relation("LatestAnalysis")
+
+  @@index([claimId])
+}
+
+model DunningRule {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  name           String
+  isDefault      Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+
+  steps  DunningStep[]
+  claims Claim[]
+
+  @@index([organizationId])
+}
+
+model DunningStep {
+  id            String      @id @default(cuid())
+  dunningRuleId String
+  dunningRule   DunningRule @relation(fields: [dunningRuleId], references: [id])
+  dayOffset     Int
+  channel       Channel
+  tone          Tone
+  templateKey   String
+  order         Int
+
+  scheduledCommunications ScheduledCommunication[]
+
+  @@index([dunningRuleId])
+}
+
+model ScheduledCommunication {
+  id            String              @id @default(cuid())
+  claimId       String
+  claim         Claim               @relation(fields: [claimId], references: [id])
+  dunningStepId String?
+  dunningStep   DunningStep?        @relation(fields: [dunningStepId], references: [id])
+  scheduledFor  DateTime
+  channel       Channel
+  status        CommunicationStatus @default(PENDING)
+  sentAt        DateTime?
+  subject       String?
+  body          String?
+  errorMessage  String?
+  createdAt     DateTime            @default(now())
+
+  approvedByUserId String?
+  approvedByUser   User?      @relation("ApprovedCommunications", fields: [approvedByUserId], references: [id])
+  approvedAt       DateTime?
+  mailClass        MailClass?
+
+  @@index([claimId])
+  @@index([scheduledFor, status])
+}
+
+model NegotiationAccessToken {
+  id        String    @id @default(cuid())
+  claimId   String
+  claim     Claim     @relation(fields: [claimId], references: [id])
+  token     String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  identityVerifiedAt         DateTime?
+  identityVerificationMethod IdentityVerificationMethod?
+  verificationAttempts       Int                         @default(0)
+  otpCode                    String?
+  otpExpiresAt               DateTime?
+
+  @@index([claimId])
+}
+
+model PaymentPlanProposal {
+  id               String         @id @default(cuid())
+  claimId          String
+  claim            Claim          @relation(fields: [claimId], references: [id])
+  proposedBy       ProposerType
+  installments     Json
+  totalAmount      Int
+  settlementOffer  Boolean        @default(false)
+  status           ProposalStatus @default(PENDING_REVIEW)
+  reviewedByUserId String?
+  reviewedByUser   User?          @relation(fields: [reviewedByUserId], references: [id])
+  reviewNote       String?
+  reviewedAt       DateTime?
+  createdAt        DateTime       @default(now())
+
+  // Debtor financial snapshot at time of proposal (項目9)
+  monthlyIncome           Int?
+  takeHomeIncome          Int?
+  rent                    Int?
+  dependentsCount         Int?
+  otherDebtRepayment      Int?
+  affordableMonthlyAmount Int?
+  desiredPaymentDay       Int?
+  bonusMonths             Int[]     @default([])
+  firstPaymentDate        DateTime?
+
+  // Electronic consent to the settlement (項目11). Staff approval is already
+  // captured by reviewedByUserId/reviewedAt above — no separate agreement
+  // model needed.
+  debtorConsentedAt DateTime?
+  debtorConsentName String?
+
+  @@index([claimId])
+}
+
+model ActivityLog {
+  id          String       @id @default(cuid())
+  claimId     String
+  claim       Claim        @relation(fields: [claimId], references: [id])
+  userId      String?
+  user        User?        @relation(fields: [userId], references: [id])
+  type        ActivityType
+  description String
+  metadata    Json?
+  createdAt   DateTime     @default(now())
+
+  @@index([claimId])
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  claimId   String
+  claim     Claim    @relation(fields: [claimId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  body      String
+  createdAt DateTime @default(now())
+
+  @@index([claimId])
+}
+
+model ComplianceFlag {
+  id       String             @id @default(cuid())
+  claimId  String
+  claim    Claim              @relation(fields: [claimId], references: [id])
+  flagType ComplianceFlagType
+  reason   String?
+
+  setByUserId String?
+  setByUser   User?    @relation("SetComplianceFlags", fields: [setByUserId], references: [id])
+  createdAt   DateTime @default(now())
+
+  clearedAt       DateTime?
+  clearedByUserId String?
+  clearedByUser   User?     @relation("ClearedComplianceFlags", fields: [clearedByUserId], references: [id])
+
+  @@index([claimId])
+}
+
+model MessageTemplate {
+  id              String       @id @default(cuid())
+  organizationId  String
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  key             String
+  label           String
+  tone            Tone
+  subjectTemplate String
+  bodyTemplate    String
+  legalApproved   Boolean      @default(false)
+  createdByUserId String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@unique([organizationId, key])
+}
+
+model NegotiationRule {
+  id             String       @id @default(cuid())
+  organizationId String       @unique
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  allowPrincipalReduction           Boolean  @default(false)
+  allowInterestWaiver               Boolean  @default(true)
+  allowLateDamageWaiver             Boolean  @default(true)
+  maxDiscountRate                   Float    @default(0.3)
+  maxInstallments                   Int      @default(24)
+  minMonthlyAmount                  Int      @default(10000)
+  firstPaymentDeadlineDays          Int      @default(30)
+  noApprovalMaxDiscountRate         Float    @default(0.1)
+  supervisorApprovalMaxDiscountRate Float    @default(0.2)
+  updatedAt                         DateTime @updatedAt
+}
+
+model IncomingDeposit {
+  id                   String             @id @default(cuid())
+  organizationId       String
+  organization         Organization       @relation(fields: [organizationId], references: [id])
+  amount               Int
+  payerName            String?
+  virtualAccountNumber String?
+  depositedAt          DateTime
+  source               String
+  matchStatus          DepositMatchStatus @default(UNMATCHED)
+  resolvedByUserId     String?
+  resolvedByUser       User?              @relation("ResolvedDeposits", fields: [resolvedByUserId], references: [id])
+  resolvedAt           DateTime?
+  createdAt            DateTime           @default(now())
+
+  payments Payment[]
+
+  @@index([organizationId])
+}
+
+model PaymentScheduleItem {
+  id        String                    @id @default(cuid())
+  claimId   String
+  claim     Claim                     @relation(fields: [claimId], references: [id])
+  dueDate   DateTime
+  amount    Int
+  status    PaymentScheduleItemStatus @default(PENDING)
+  paidAt    DateTime?
+  paymentId String?                   @unique
+  payment   Payment?                  @relation(fields: [paymentId], references: [id])
+  createdAt DateTime                  @default(now())
+
+  @@index([claimId])
+}
