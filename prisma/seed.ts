@@ -7,6 +7,7 @@ import { runClaimAnalysis } from "../lib/ai/runClaimAnalysis";
 import { generateScheduleFromProposal } from "../lib/schedule/generateScheduleFromProposal";
 import { cancelPendingCommunications } from "../lib/dunning/cancelPendingCommunications";
 import { createPaymentForClaim } from "../lib/payments/createPaymentForClaim";
+import { seedBulkDemoData } from "./seedBulk";
 import type { $Enums } from "../generated/prisma/client";
 
 const DEMO_PASSWORD = "demo1234";
@@ -88,6 +89,7 @@ interface ClaimSeed {
 async function resetDatabase() {
   // Break the Claim <-> ClaimAnalysis cycle first, then delete in dependency order.
   await prisma.claim.updateMany({ data: { latestAnalysisId: null } });
+  await prisma.aiVoiceCallLog.deleteMany();
   await prisma.paymentPlanProposal.deleteMany();
   await prisma.negotiationAccessToken.deleteMany();
   await prisma.scheduledCommunication.deleteMany();
@@ -104,6 +106,7 @@ async function resetDatabase() {
   await prisma.messageTemplate.deleteMany();
   await prisma.negotiationRule.deleteMany();
   await prisma.negotiationRule.deleteMany();
+  await prisma.aiVoiceSettings.deleteMany();
   await prisma.debtor.deleteMany();
   await prisma.user.deleteMany();
   await prisma.organization.deleteMany();
@@ -118,10 +121,11 @@ async function createDefaultDunningRule(organizationId: string) {
       steps: {
         create: [
           { dayOffset: 0, channel: "EMAIL", tone: "EMPATHETIC", templateKey: "FRIENDLY_REMINDER", order: 1 },
-          { dayOffset: 14, channel: "EMAIL", tone: "NEUTRAL_FIRM", templateKey: "FIRM_NOTICE", order: 2 },
-          { dayOffset: 14, channel: "SMS", tone: "NEUTRAL_FIRM", templateKey: "FIRM_NOTICE", order: 3 },
-          { dayOffset: 30, channel: "EMAIL", tone: "FORMAL_FINAL_NOTICE", templateKey: "FINAL_NOTICE", order: 4 },
-          { dayOffset: 30, channel: "LETTER", tone: "FORMAL_FINAL_NOTICE", templateKey: "FINAL_NOTICE", order: 5 },
+          { dayOffset: 7, channel: "AI_VOICE_CALL", tone: "NEUTRAL_FIRM", templateKey: "FRIENDLY_REMINDER", order: 2 },
+          { dayOffset: 14, channel: "EMAIL", tone: "NEUTRAL_FIRM", templateKey: "FIRM_NOTICE", order: 3 },
+          { dayOffset: 14, channel: "SMS", tone: "NEUTRAL_FIRM", templateKey: "FIRM_NOTICE", order: 4 },
+          { dayOffset: 30, channel: "EMAIL", tone: "FORMAL_FINAL_NOTICE", templateKey: "FINAL_NOTICE", order: 5 },
+          { dayOffset: 30, channel: "LETTER", tone: "FORMAL_FINAL_NOTICE", templateKey: "FINAL_NOTICE", order: 6 },
         ],
       },
     },
@@ -130,6 +134,11 @@ async function createDefaultDunningRule(organizationId: string) {
 
 async function createDefaultNegotiationRule(organizationId: string) {
   return prisma.negotiationRule.create({ data: { organizationId } });
+}
+
+/** Enabled by default so the demo shows AI音声自動督促 working without an extra manual setup step. */
+async function createDefaultAiVoiceSettings(organizationId: string) {
+  return prisma.aiVoiceSettings.create({ data: { organizationId, enabled: true } });
 }
 
 async function createSampleMessageTemplate(organizationId: string, userId: string) {
@@ -610,8 +619,9 @@ async function seedOrganization(
   const agents = createdUsers.filter((u) => u.role === "AGENT");
   const admin = createdUsers.find((u) => u.role === "ADMIN") ?? createdUsers[0];
 
-  await createDefaultDunningRule(org.id);
+  const dunningRule = await createDefaultDunningRule(org.id);
   await createDefaultNegotiationRule(org.id);
+  await createDefaultAiVoiceSettings(org.id);
   await createSampleMessageTemplate(org.id, admin.id);
 
   let agentIndex = 0;
@@ -692,7 +702,7 @@ async function seedOrganization(
     await scheduleForClaim(claim.id);
   }
 
-  return { org, users: createdUsers };
+  return { org, users: createdUsers, dunningRuleId: dunningRule.id, agentIds: agents.map((a) => a.id) };
 }
 
 async function seedSettlementDemo(debtorName: string) {
@@ -808,7 +818,7 @@ async function main() {
   console.log("シードデータ投入を開始します...");
   await resetDatabase();
 
-  const { org: org1 } = await seedOrganization(
+  const { org: org1, dunningRuleId: org1RuleId, agentIds: org1AgentIds } = await seedOrganization(
     "デモ信用金庫",
     "CREDIT_UNION",
     [
@@ -819,7 +829,7 @@ async function main() {
     ORG1_CLAIMS,
   );
 
-  const { org: org2 } = await seedOrganization(
+  const { org: org2, dunningRuleId: org2RuleId, agentIds: org2AgentIds } = await seedOrganization(
     "デモ商事株式会社",
     "COMPANY",
     [
@@ -841,6 +851,24 @@ async function main() {
   for (const [i, claim] of allClaims.entries()) {
     await runClaimAnalysis(claim.id);
     if ((i + 1) % 5 === 0) console.log(`  ${i + 1}/${allClaims.length} 件完了`);
+  }
+
+  // Bulk synthetic data for PoC demo scale (見せ方用の合成データ、実在の顧客ではない).
+  // Kept separate from the hand-authored claims above: those get real AI
+  // analysis; this bulk batch uses a heuristic stand-in (see
+  // generateSyntheticAnalysis.ts) so 5,000 records don't mean 5,000 LLM calls.
+  const bulkCount = Number(process.env.BULK_DEMO_CLAIM_COUNT ?? 5000);
+  if (bulkCount > 0) {
+    console.log(`バルクデモデータを生成します(合計${bulkCount}件、PoC実証用の合成データ)...`);
+    await seedBulkDemoData(
+      [
+        { organizationId: org1.id, dunningRuleId: org1RuleId, agentIds: org1AgentIds, debtorSkew: "individual" },
+        { organizationId: org2.id, dunningRuleId: org2RuleId, agentIds: org2AgentIds, debtorSkew: "company" },
+      ],
+      bulkCount,
+      9_100_000_001,
+    );
+    console.log("バルクデモデータ生成が完了しました。");
   }
 
   console.log("シードデータ投入が完了しました。");

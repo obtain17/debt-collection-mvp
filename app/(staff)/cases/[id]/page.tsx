@@ -11,6 +11,7 @@ import { getNegotiationRule } from "@/lib/negotiation/getNegotiationRule";
 import { evaluateProposal } from "@/lib/negotiation/evaluateProposal";
 import { getScheduleSummary } from "@/lib/schedule/getScheduleSummary";
 import { getClaimReferenceCode } from "@/lib/portal/verifyIdentity";
+import { getAiVoiceSettings } from "@/lib/voice/getAiVoiceSettings";
 import {
   APPROACH_LABEL,
   CHANNEL_LABEL,
@@ -32,6 +33,8 @@ import {
   RISK_TIER_COLOR,
   RISK_TIER_LABEL,
   TONE_LABEL,
+  VOICE_CALL_OUTCOME_COLOR,
+  VOICE_CALL_OUTCOME_LABEL,
   formatDate,
   formatDateTime,
   formatYen,
@@ -43,6 +46,7 @@ import {
   editCommunicationContent,
   issuePortalLink,
   logContactEvent,
+  placeAdHocAiVoiceCall,
   reanalyzeClaimAction,
   recordPayment,
   rejectCommunication,
@@ -78,10 +82,13 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
         orderBy: { createdAt: "desc" },
         include: { setByUser: true, clearedByUser: true },
       },
+      aiVoiceCallLogs: { orderBy: { startedAt: "desc" } },
     },
   });
 
   if (!claim) notFound();
+
+  const aiVoiceSettings = await getAiVoiceSettings(session.organizationId);
 
   const activeToken = await prisma.negotiationAccessToken.findFirst({
     where: { claimId: claim.id, revokedAt: null, expiresAt: { gt: new Date() } },
@@ -338,6 +345,68 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ id:
                 </li>
               ))}
               {claim.complianceFlags.length === 0 && <li className="text-slate-400">フラグはありません</li>}
+            </ul>
+          </section>
+
+          {/* AI voice auto-dunning (項目1) */}
+          <section className="rounded-lg border border-slate-200 bg-white p-5">
+            <div className="mb-3 flex items-center justify-between">
+              <h2 className="font-semibold text-slate-900">AI音声自動督促</h2>
+              {claim.status !== "SETTLED" && claim.status !== "WRITTEN_OFF" && (
+                <form
+                  action={async () => {
+                    "use server";
+                    await placeAdHocAiVoiceCall(claim.id);
+                  }}
+                >
+                  <SubmitButton
+                    pendingLabel="架電中..."
+                    className="rounded-md bg-slate-900 px-3 py-1 text-xs text-white hover:bg-slate-800"
+                  >
+                    今すぐ架電(デモ)
+                  </SubmitButton>
+                </form>
+              )}
+            </div>
+
+            {!aiVoiceSettings.enabled && (
+              <p className="mb-2 rounded bg-amber-50 px-2 py-1 text-xs text-amber-800">
+                この組織ではAI音声自動督促が無効です。
+                <Link href="/settings/ai-voice" className="ml-1 underline">
+                  設定画面で有効化
+                </Link>
+                すると実行できます(実行しても発信対象外として記録されます)。
+              </p>
+            )}
+
+            <ul className="space-y-2 text-sm">
+              {claim.aiVoiceCallLogs.map((call) => (
+                <li key={call.id} className="rounded-md border border-slate-200 p-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-500">{formatDateTime(call.startedAt)}</span>
+                    <span className={`rounded-full px-2 py-0.5 text-xs ${VOICE_CALL_OUTCOME_COLOR[call.outcome]}`}>
+                      {VOICE_CALL_OUTCOME_LABEL[call.outcome]}
+                    </span>
+                  </div>
+                  {call.summary && <p className="mt-1 text-slate-700">{call.summary}</p>}
+                  {Array.isArray(call.transcript) && call.transcript.length > 0 && (
+                    <details className="mt-1">
+                      <summary className="cursor-pointer text-xs text-slate-500">文字起こしを表示</summary>
+                      <ul className="mt-1 space-y-1 rounded bg-slate-50 p-2 text-xs">
+                        {(call.transcript as Array<{ speaker: string; text: string }>).map((turn, i) => (
+                          <li key={i}>
+                            <span className="font-medium text-slate-700">
+                              {turn.speaker === "AI" ? "AI: " : "債務者: "}
+                            </span>
+                            {turn.text}
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
+                </li>
+              ))}
+              {claim.aiVoiceCallLogs.length === 0 && <li className="text-slate-400">通話記録はまだありません</li>}
             </ul>
           </section>
 

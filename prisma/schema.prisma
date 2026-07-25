@@ -138,6 +138,7 @@ enum ActivityType {
   CALL_NO_ANSWER
   CALL_CONNECTED_DEBTOR
   CALL_CONNECTED_FAMILY
+  CALL_VOICEMAIL_LEFT
   DEBTOR_CALLBACK
   PAYMENT_PROMISE_MADE
   PAYMENT_PROMISE_BROKEN
@@ -196,6 +197,23 @@ enum ConfidenceLevel {
   HIGH
 }
 
+enum AiVoiceCallOutcome {
+  CONNECTED_DEBTOR
+  CONNECTED_OTHER
+  NO_ANSWER
+  VOICEMAIL_LEFT
+}
+
+enum VoiceTelephonyProvider {
+  TWILIO
+  AMAZON_CONNECT
+}
+
+enum VoiceSpeechProvider {
+  OPENAI_REALTIME
+  AZURE_AI_SPEECH
+}
+
 // ---------------------------------------------------------------------------
 // Models
 // ---------------------------------------------------------------------------
@@ -213,6 +231,7 @@ model Organization {
   messageTemplates MessageTemplate[]
   negotiationRule  NegotiationRule?
   incomingDeposits IncomingDeposit[]
+  aiVoiceSettings  AiVoiceSettings?
 }
 
 model User {
@@ -315,6 +334,7 @@ model Claim {
   notes                   Note[]
   complianceFlags         ComplianceFlag[]
   scheduleItems           PaymentScheduleItem[]
+  aiVoiceCallLogs         AiVoiceCallLog[]
 
   @@index([organizationId])
   @@index([status])
@@ -440,6 +460,8 @@ model ScheduledCommunication {
   approvedByUser   User?      @relation("ApprovedCommunications", fields: [approvedByUserId], references: [id])
   approvedAt       DateTime?
   mailClass        MailClass?
+
+  aiVoiceCallLog AiVoiceCallLog?
 
   @@index([claimId])
   @@index([scheduledFor, status])
@@ -594,6 +616,52 @@ model IncomingDeposit {
   payments Payment[]
 
   @@index([organizationId])
+}
+
+/**
+ * Org-level configuration for AI音声自動督促 (項目1)。実際の電話回線接続は
+ * このMVPでは行わず(シミュレーション)、有効化フラグとプロバイダ選択・発信可能
+ * 時間帯のみを保持する。本人確認前の債権内容非開示・弁護士介入等での即時停止・
+ * 減額交渉の人間限定は、常時有効な固定ルールとして lib/voice 側で強制する
+ * (トグルで無効化できるコンプライアンス項目としては扱わない)。
+ */
+model AiVoiceSettings {
+  id                  String                 @id @default(cuid())
+  organizationId      String                 @unique
+  organization        Organization           @relation(fields: [organizationId], references: [id])
+  enabled             Boolean                @default(false)
+  telephonyProvider   VoiceTelephonyProvider  @default(TWILIO)
+  speechProvider      VoiceSpeechProvider     @default(OPENAI_REALTIME)
+  callerName          String                 @default("債権管理部")
+  callWindowStartHour Int                    @default(9)
+  callWindowEndHour   Int                    @default(20)
+  updatedAt           DateTime               @updatedAt
+}
+
+/**
+ * One row per simulated AI voice call attempt (項目1・3の通話録音/文字起こし/
+ * 要約画面のデータ源)。scheduledCommunicationId は督促スケジュール経由の発信の
+ * 場合のみセットされ、ケース詳細からの即時デモ実行では null のまま。
+ */
+model AiVoiceCallLog {
+  id                       String                  @id @default(cuid())
+  claimId                  String
+  claim                    Claim                   @relation(fields: [claimId], references: [id])
+  scheduledCommunicationId String?                 @unique
+  scheduledCommunication   ScheduledCommunication? @relation(fields: [scheduledCommunicationId], references: [id])
+  outcome                  AiVoiceCallOutcome
+  identityVerified         Boolean                 @default(false)
+  transcript               Json?
+  summary                  String?
+  detectedComplianceFlag   ComplianceFlagType?
+  transferredToHuman       Boolean                 @default(false)
+  paymentPromiseDate       DateTime?
+  paymentPromiseAmount     Int?
+  modelUsed                String?
+  durationSeconds          Int?
+  startedAt                DateTime                @default(now())
+
+  @@index([claimId])
 }
 
 model PaymentScheduleItem {

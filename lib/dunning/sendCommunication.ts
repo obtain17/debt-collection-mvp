@@ -4,6 +4,7 @@ import { renderDunningContent } from "./renderContent";
 import { CHANNEL_LABEL, COMPLIANCE_FLAG_LABEL } from "@/lib/format";
 import { findBlockingComplianceFlag } from "@/lib/compliance/rules";
 import { checkContactFrequency } from "@/lib/compliance/contactFrequency";
+import { placeAiVoiceCall } from "@/lib/voice/placeAiVoiceCall";
 import type { $Enums } from "@/generated/prisma/client";
 
 let transporter: nodemailer.Transporter | undefined;
@@ -67,6 +68,14 @@ async function processOne(sc: DueCommunication): Promise<void> {
 
   if (INACTIVE_STATUSES.has(claim.status)) {
     await prisma.scheduledCommunication.update({ where: { id: sc.id }, data: { status: "SKIPPED" } });
+    return;
+  }
+
+  // AI_VOICE_CALL has its own dedicated pipeline (compliance checks, identity
+  // gate, transcript simulation, call log) — it doesn't use the
+  // template-rendering path below, which only makes sense for text channels.
+  if (sc.channel === "AI_VOICE_CALL") {
+    await placeAiVoiceCall({ claimId: claim.id, scheduledCommunicationId: sc.id });
     return;
   }
 

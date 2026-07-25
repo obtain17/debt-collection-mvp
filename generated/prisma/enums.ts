@@ -176,6 +176,7 @@ export const ActivityType = {
   CALL_NO_ANSWER: 'CALL_NO_ANSWER',
   CALL_CONNECTED_DEBTOR: 'CALL_CONNECTED_DEBTOR',
   CALL_CONNECTED_FAMILY: 'CALL_CONNECTED_FAMILY',
+  CALL_VOICEMAIL_LEFT: 'CALL_VOICEMAIL_LEFT',
   DEBTOR_CALLBACK: 'DEBTOR_CALLBACK',
   PAYMENT_PROMISE_MADE: 'PAYMENT_PROMISE_MADE',
   PAYMENT_PROMISE_BROKEN: 'PAYMENT_PROMISE_BROKEN',
@@ -253,3 +254,29 @@ export const ConfidenceLevel = {
 } as const
 
 export type ConfidenceLevel = (typeof ConfidenceLevel)[keyof typeof ConfidenceLevel]
+
+
+export const AiVoiceCallOutcome = {
+  CONNECTED_DEBTOR: 'CONNECTED_DEBTOR',
+  CONNECTED_OTHER: 'CONNECTED_OTHER',
+  NO_ANSWER: 'NO_ANSWER',
+  VOICEMAIL_LEFT: 'VOICEMAIL_LEFT'
+} as const
+
+export type AiVoiceCallOutcome = (typeof AiVoiceCallOutcome)[keyof typeof AiVoiceCallOutcome]
+
+
+export const VoiceTelephonyProvider = {
+  TWILIO: 'TWILIO',
+  AMAZON_CONNECT: 'AMAZON_CONNECT'
+} as const
+
+export type VoiceTelephonyProvider = (typeof VoiceTelephonyProvider)[keyof typeof VoiceTelephonyProvider]
+
+
+export const VoiceSpeechProvider = {
+  OPENAI_REALTIME: 'OPENAI_REALTIME',
+  AZURE_AI_SPEECH: 'AZURE_AI_SPEECH'
+} as const
+
+export type VoiceSpeechProvider = (typeof VoiceSpeechProvider)[keyof typeof VoiceSpeechProvider]

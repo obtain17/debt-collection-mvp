@@ -68,6 +68,8 @@ export const ModelName = {
   MessageTemplate: 'MessageTemplate',
   NegotiationRule: 'NegotiationRule',
   IncomingDeposit: 'IncomingDeposit',
+  AiVoiceSettings: 'AiVoiceSettings',
+  AiVoiceCallLog: 'AiVoiceCallLog',
   PaymentScheduleItem: 'PaymentScheduleItem'
 } as const
 
@@ -403,6 +405,41 @@ export const IncomingDepositScalarFieldEnum = {
 } as const
 
 export type IncomingDepositScalarFieldEnum = (typeof IncomingDepositScalarFieldEnum)[keyof typeof IncomingDepositScalarFieldEnum]
+
+
+export const AiVoiceSettingsScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  enabled: 'enabled',
+  telephonyProvider: 'telephonyProvider',
+  speechProvider: 'speechProvider',
+  callerName: 'callerName',
+  callWindowStartHour: 'callWindowStartHour',
+  callWindowEndHour: 'callWindowEndHour',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AiVoiceSettingsScalarFieldEnum = (typeof AiVoiceSettingsScalarFieldEnum)[keyof typeof AiVoiceSettingsScalarFieldEnum]
+
+
+export const AiVoiceCallLogScalarFieldEnum = {
+  id: 'id',
+  claimId: 'claimId',
+  scheduledCommunicationId: 'scheduledCommunicationId',
+  outcome: 'outcome',
+  identityVerified: 'identityVerified',
+  transcript: 'transcript',
+  summary: 'summary',
+  detectedComplianceFlag: 'detectedComplianceFlag',
+  transferredToHuman: 'transferredToHuman',
+  paymentPromiseDate: 'paymentPromiseDate',
+  paymentPromiseAmount: 'paymentPromiseAmount',
+  modelUsed: 'modelUsed',
+  durationSeconds: 'durationSeconds',
+  startedAt: 'startedAt'
+} as const
+
+export type AiVoiceCallLogScalarFieldEnum = (typeof AiVoiceCallLogScalarFieldEnum)[keyof typeof AiVoiceCallLogScalarFieldEnum]
 
 
 export const PaymentScheduleItemScalarFieldEnum = {

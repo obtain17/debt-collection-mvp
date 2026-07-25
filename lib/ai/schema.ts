@@ -49,3 +49,29 @@ export const ClaimAnalysisResultSchema = z.object({
 });
 
 export type ClaimAnalysisResult = z.infer<typeof ClaimAnalysisResultSchema>;
+
+export const VoiceCallTriggerSchema = z.enum([
+  "ATTORNEY_INVOLVED",
+  "BANKRUPTCY_OR_REHAB",
+  "DEBT_DISPUTE",
+  "COMPLAINT_IN_PROGRESS",
+]);
+
+export const VoiceCallSimulationResultSchema = z.object({
+  transcript: z
+    .array(
+      z.object({
+        speaker: z.enum(["AI", "DEBTOR"]),
+        text: z.string(),
+      }),
+    )
+    .min(2)
+    .max(16),
+  summary: z.string(),
+  detectedComplianceTrigger: VoiceCallTriggerSchema.nullable(),
+  paymentPromiseDate: z.string().nullable(),
+  paymentPromiseAmount: z.number().int().min(0).nullable(),
+  requiresHumanFollowUp: z.boolean(),
+});
+
+export type VoiceCallSimulationResult = z.infer<typeof VoiceCallSimulationResultSchema>;

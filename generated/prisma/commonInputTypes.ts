@@ -732,6 +732,74 @@ export type FloatWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
 }
 
+export type EnumVoiceTelephonyProviderFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceTelephonyProvider | Prisma.EnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceTelephonyProviderFilter<$PrismaModel> | $Enums.VoiceTelephonyProvider
+}
+
+export type EnumVoiceSpeechProviderFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceSpeechProvider | Prisma.EnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceSpeechProviderFilter<$PrismaModel> | $Enums.VoiceSpeechProvider
+}
+
+export type EnumVoiceTelephonyProviderWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceTelephonyProvider | Prisma.EnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceTelephonyProviderWithAggregatesFilter<$PrismaModel> | $Enums.VoiceTelephonyProvider
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceTelephonyProviderFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceTelephonyProviderFilter<$PrismaModel>
+}
+
+export type EnumVoiceSpeechProviderWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceSpeechProvider | Prisma.EnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceSpeechProviderWithAggregatesFilter<$PrismaModel> | $Enums.VoiceSpeechProvider
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceSpeechProviderFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceSpeechProviderFilter<$PrismaModel>
+}
+
+export type EnumAiVoiceCallOutcomeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiVoiceCallOutcome | Prisma.EnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  in?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiVoiceCallOutcomeFilter<$PrismaModel> | $Enums.AiVoiceCallOutcome
+}
+
+export type EnumComplianceFlagTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ComplianceFlagType | Prisma.EnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumComplianceFlagTypeNullableFilter<$PrismaModel> | $Enums.ComplianceFlagType | null
+}
+
+export type EnumAiVoiceCallOutcomeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiVoiceCallOutcome | Prisma.EnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  in?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiVoiceCallOutcomeWithAggregatesFilter<$PrismaModel> | $Enums.AiVoiceCallOutcome
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiVoiceCallOutcomeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiVoiceCallOutcomeFilter<$PrismaModel>
+}
+
+export type EnumComplianceFlagTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ComplianceFlagType | Prisma.EnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumComplianceFlagTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ComplianceFlagType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumComplianceFlagTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumComplianceFlagTypeNullableFilter<$PrismaModel>
+}
+
 export type EnumPaymentScheduleItemStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.PaymentScheduleItemStatus | Prisma.EnumPaymentScheduleItemStatusFieldRefInput<$PrismaModel>
   in?: $Enums.PaymentScheduleItemStatus[] | Prisma.ListEnumPaymentScheduleItemStatusFieldRefInput<$PrismaModel>
@@ -1402,6 +1470,74 @@ export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatFilter<$PrismaModel>
   _min?: Prisma.NestedFloatFilter<$PrismaModel>
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
+}
+
+export type NestedEnumVoiceTelephonyProviderFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceTelephonyProvider | Prisma.EnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceTelephonyProviderFilter<$PrismaModel> | $Enums.VoiceTelephonyProvider
+}
+
+export type NestedEnumVoiceSpeechProviderFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceSpeechProvider | Prisma.EnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceSpeechProviderFilter<$PrismaModel> | $Enums.VoiceSpeechProvider
+}
+
+export type NestedEnumVoiceTelephonyProviderWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceTelephonyProvider | Prisma.EnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceTelephonyProvider[] | Prisma.ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceTelephonyProviderWithAggregatesFilter<$PrismaModel> | $Enums.VoiceTelephonyProvider
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceTelephonyProviderFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceTelephonyProviderFilter<$PrismaModel>
+}
+
+export type NestedEnumVoiceSpeechProviderWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VoiceSpeechProvider | Prisma.EnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  in?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VoiceSpeechProvider[] | Prisma.ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVoiceSpeechProviderWithAggregatesFilter<$PrismaModel> | $Enums.VoiceSpeechProvider
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVoiceSpeechProviderFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVoiceSpeechProviderFilter<$PrismaModel>
+}
+
+export type NestedEnumAiVoiceCallOutcomeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiVoiceCallOutcome | Prisma.EnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  in?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiVoiceCallOutcomeFilter<$PrismaModel> | $Enums.AiVoiceCallOutcome
+}
+
+export type NestedEnumComplianceFlagTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ComplianceFlagType | Prisma.EnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumComplianceFlagTypeNullableFilter<$PrismaModel> | $Enums.ComplianceFlagType | null
+}
+
+export type NestedEnumAiVoiceCallOutcomeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiVoiceCallOutcome | Prisma.EnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  in?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiVoiceCallOutcome[] | Prisma.ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiVoiceCallOutcomeWithAggregatesFilter<$PrismaModel> | $Enums.AiVoiceCallOutcome
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiVoiceCallOutcomeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiVoiceCallOutcomeFilter<$PrismaModel>
+}
+
+export type NestedEnumComplianceFlagTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ComplianceFlagType | Prisma.EnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ComplianceFlagType[] | Prisma.ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumComplianceFlagTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ComplianceFlagType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumComplianceFlagTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumComplianceFlagTypeNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumPaymentScheduleItemStatusFilter<$PrismaModel = never> = {

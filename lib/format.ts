@@ -172,13 +172,64 @@ export const CONFIDENCE_LABEL: Record<string, string> = {
   HIGH: "高",
 };
 
+/** All ActivityType values, for the cross-claim audit log screen. */
+export const ACTIVITY_TYPE_LABEL: Record<string, string> = {
+  STATUS_CHANGE: "ステータス変更",
+  COMMUNICATION_SENT: "督促送信",
+  NOTE_ADDED: "メモ追加",
+  PROPOSAL_SUBMITTED: "返済提案の提出",
+  PROPOSAL_REVIEWED: "返済提案の審査",
+  AI_ANALYSIS_RUN: "AI分析実行",
+  PORTAL_ACCESSED: "交渉ポータルへのアクセス",
+  COMPLIANCE_FLAG_SET: "コンプライアンスフラグ設定",
+  COMPLIANCE_FLAG_CLEARED: "コンプライアンスフラグ解除",
+  CALL_PLACED: "電話発信",
+  CALL_NO_ANSWER: "電話不通",
+  CALL_CONNECTED_DEBTOR: "本人と通話",
+  CALL_CONNECTED_FAMILY: "家族等が応答",
+  CALL_VOICEMAIL_LEFT: "留守番電話に折り返し依頼",
+  DEBTOR_CALLBACK: "債務者からの折返し",
+  PAYMENT_PROMISE_MADE: "支払約束",
+  PAYMENT_PROMISE_BROKEN: "約束不履行",
+  PAYMENT_RECEIVED: "入金受領",
+  SMS_DELIVERED: "SMS到達",
+  SMS_UNDELIVERED: "SMS不達",
+  MAIL_DELIVERED: "郵便配達",
+  MAIL_RETURNED: "郵便返送",
+};
+
 /** Manually-loggable contact outcomes shown in the "接触記録を追加" form. */
 export const CONTACT_EVENT_LABEL: Record<string, string> = {
   CALL_PLACED: "電話発信",
   CALL_NO_ANSWER: "電話不通",
   CALL_CONNECTED_DEBTOR: "本人と通話",
   CALL_CONNECTED_FAMILY: "家族等が応答",
+  CALL_VOICEMAIL_LEFT: "留守番電話に折り返し依頼",
   DEBTOR_CALLBACK: "債務者からの折返し",
   PAYMENT_PROMISE_MADE: "支払約束",
   PAYMENT_PROMISE_BROKEN: "約束不履行",
+};
+
+export const VOICE_CALL_OUTCOME_LABEL: Record<string, string> = {
+  CONNECTED_DEBTOR: "本人と通話",
+  CONNECTED_OTHER: "本人以外が応答",
+  NO_ANSWER: "応答なし",
+  VOICEMAIL_LEFT: "留守番電話に依頼のみ",
+};
+
+export const VOICE_CALL_OUTCOME_COLOR: Record<string, string> = {
+  CONNECTED_DEBTOR: "bg-emerald-100 text-emerald-800",
+  CONNECTED_OTHER: "bg-blue-100 text-blue-800",
+  NO_ANSWER: "bg-slate-100 text-slate-600",
+  VOICEMAIL_LEFT: "bg-amber-100 text-amber-800",
+};
+
+export const VOICE_TELEPHONY_PROVIDER_LABEL: Record<string, string> = {
+  TWILIO: "Twilio型(Web組込・PoC向け)",
+  AMAZON_CONNECT: "Amazon Connect型(金融機関向け管理・録音重視)",
+};
+
+export const VOICE_SPEECH_PROVIDER_LABEL: Record<string, string> = {
+  OPENAI_REALTIME: "OpenAI Realtime API(低遅延音声対話)",
+  AZURE_AI_SPEECH: "Azure AI Speech(音声認識・読み上げ)",
 };

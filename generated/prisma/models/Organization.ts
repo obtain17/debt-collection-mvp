@@ -181,6 +181,7 @@ export type OrganizationWhereInput = {
   messageTemplates?: Prisma.MessageTemplateListRelationFilter
   negotiationRule?: Prisma.XOR<Prisma.NegotiationRuleNullableScalarRelationFilter, Prisma.NegotiationRuleWhereInput> | null
   incomingDeposits?: Prisma.IncomingDepositListRelationFilter
+  aiVoiceSettings?: Prisma.XOR<Prisma.AiVoiceSettingsNullableScalarRelationFilter, Prisma.AiVoiceSettingsWhereInput> | null
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -195,6 +196,7 @@ export type OrganizationOrderByWithRelationInput = {
   messageTemplates?: Prisma.MessageTemplateOrderByRelationAggregateInput
   negotiationRule?: Prisma.NegotiationRuleOrderByWithRelationInput
   incomingDeposits?: Prisma.IncomingDepositOrderByRelationAggregateInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsOrderByWithRelationInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -212,6 +214,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   messageTemplates?: Prisma.MessageTemplateListRelationFilter
   negotiationRule?: Prisma.XOR<Prisma.NegotiationRuleNullableScalarRelationFilter, Prisma.NegotiationRuleWhereInput> | null
   incomingDeposits?: Prisma.IncomingDepositListRelationFilter
+  aiVoiceSettings?: Prisma.XOR<Prisma.AiVoiceSettingsNullableScalarRelationFilter, Prisma.AiVoiceSettingsWhereInput> | null
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -246,6 +249,7 @@ export type OrganizationCreateInput = {
   messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -260,6 +264,7 @@ export type OrganizationUncheckedCreateInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -274,6 +279,7 @@ export type OrganizationUpdateInput = {
   messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -288,6 +294,7 @@ export type OrganizationUncheckedUpdateInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -447,6 +454,20 @@ export type OrganizationUpdateOneRequiredWithoutIncomingDepositsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutIncomingDepositsInput, Prisma.OrganizationUpdateWithoutIncomingDepositsInput>, Prisma.OrganizationUncheckedUpdateWithoutIncomingDepositsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutAiVoiceSettingsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAiVoiceSettingsInput, Prisma.OrganizationUncheckedCreateWithoutAiVoiceSettingsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAiVoiceSettingsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutAiVoiceSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAiVoiceSettingsInput, Prisma.OrganizationUncheckedCreateWithoutAiVoiceSettingsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAiVoiceSettingsInput
+  upsert?: Prisma.OrganizationUpsertWithoutAiVoiceSettingsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAiVoiceSettingsInput, Prisma.OrganizationUpdateWithoutAiVoiceSettingsInput>, Prisma.OrganizationUncheckedUpdateWithoutAiVoiceSettingsInput>
+}
+
 export type OrganizationCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -458,6 +479,7 @@ export type OrganizationCreateWithoutUsersInput = {
   messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutUsersInput = {
@@ -471,6 +493,7 @@ export type OrganizationUncheckedCreateWithoutUsersInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutUsersInput = {
@@ -500,6 +523,7 @@ export type OrganizationUpdateWithoutUsersInput = {
   messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutUsersInput = {
@@ -513,6 +537,7 @@ export type OrganizationUncheckedUpdateWithoutUsersInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutDebtorsInput = {
@@ -526,6 +551,7 @@ export type OrganizationCreateWithoutDebtorsInput = {
   messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDebtorsInput = {
@@ -539,6 +565,7 @@ export type OrganizationUncheckedCreateWithoutDebtorsInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDebtorsInput = {
@@ -568,6 +595,7 @@ export type OrganizationUpdateWithoutDebtorsInput = {
   messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDebtorsInput = {
@@ -581,6 +609,7 @@ export type OrganizationUncheckedUpdateWithoutDebtorsInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutClaimsInput = {
@@ -594,6 +623,7 @@ export type OrganizationCreateWithoutClaimsInput = {
   messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutClaimsInput = {
@@ -607,6 +637,7 @@ export type OrganizationUncheckedCreateWithoutClaimsInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutClaimsInput = {
@@ -636,6 +667,7 @@ export type OrganizationUpdateWithoutClaimsInput = {
   messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutClaimsInput = {
@@ -649,6 +681,7 @@ export type OrganizationUncheckedUpdateWithoutClaimsInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutDunningRulesInput = {
@@ -662,6 +695,7 @@ export type OrganizationCreateWithoutDunningRulesInput = {
   messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDunningRulesInput = {
@@ -675,6 +709,7 @@ export type OrganizationUncheckedCreateWithoutDunningRulesInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDunningRulesInput = {
@@ -704,6 +739,7 @@ export type OrganizationUpdateWithoutDunningRulesInput = {
   messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDunningRulesInput = {
@@ -717,6 +753,7 @@ export type OrganizationUncheckedUpdateWithoutDunningRulesInput = {
   messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutMessageTemplatesInput = {
@@ -730,6 +767,7 @@ export type OrganizationCreateWithoutMessageTemplatesInput = {
   dunningRules?: Prisma.DunningRuleCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMessageTemplatesInput = {
@@ -743,6 +781,7 @@ export type OrganizationUncheckedCreateWithoutMessageTemplatesInput = {
   dunningRules?: Prisma.DunningRuleUncheckedCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMessageTemplatesInput = {
@@ -772,6 +811,7 @@ export type OrganizationUpdateWithoutMessageTemplatesInput = {
   dunningRules?: Prisma.DunningRuleUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMessageTemplatesInput = {
@@ -785,6 +825,7 @@ export type OrganizationUncheckedUpdateWithoutMessageTemplatesInput = {
   dunningRules?: Prisma.DunningRuleUncheckedUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutNegotiationRuleInput = {
@@ -798,6 +839,7 @@ export type OrganizationCreateWithoutNegotiationRuleInput = {
   dunningRules?: Prisma.DunningRuleCreateNestedManyWithoutOrganizationInput
   messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutNegotiationRuleInput = {
@@ -811,6 +853,7 @@ export type OrganizationUncheckedCreateWithoutNegotiationRuleInput = {
   dunningRules?: Prisma.DunningRuleUncheckedCreateNestedManyWithoutOrganizationInput
   messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutNegotiationRuleInput = {
@@ -840,6 +883,7 @@ export type OrganizationUpdateWithoutNegotiationRuleInput = {
   dunningRules?: Prisma.DunningRuleUpdateManyWithoutOrganizationNestedInput
   messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutNegotiationRuleInput = {
@@ -853,6 +897,7 @@ export type OrganizationUncheckedUpdateWithoutNegotiationRuleInput = {
   dunningRules?: Prisma.DunningRuleUncheckedUpdateManyWithoutOrganizationNestedInput
   messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
   incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutIncomingDepositsInput = {
@@ -866,6 +911,7 @@ export type OrganizationCreateWithoutIncomingDepositsInput = {
   dunningRules?: Prisma.DunningRuleCreateNestedManyWithoutOrganizationInput
   messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutIncomingDepositsInput = {
@@ -879,6 +925,7 @@ export type OrganizationUncheckedCreateWithoutIncomingDepositsInput = {
   dunningRules?: Prisma.DunningRuleUncheckedCreateNestedManyWithoutOrganizationInput
   messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedCreateNestedOneWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutIncomingDepositsInput = {
@@ -908,6 +955,7 @@ export type OrganizationUpdateWithoutIncomingDepositsInput = {
   dunningRules?: Prisma.DunningRuleUpdateManyWithoutOrganizationNestedInput
   messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUpdateOneWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutIncomingDepositsInput = {
@@ -921,6 +969,79 @@ export type OrganizationUncheckedUpdateWithoutIncomingDepositsInput = {
   dunningRules?: Prisma.DunningRuleUncheckedUpdateManyWithoutOrganizationNestedInput
   messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
   negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
+  aiVoiceSettings?: Prisma.AiVoiceSettingsUncheckedUpdateOneWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutAiVoiceSettingsInput = {
+  id?: string
+  name: string
+  type: $Enums.OrganizationType
+  createdAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
+  debtors?: Prisma.DebtorCreateNestedManyWithoutOrganizationInput
+  claims?: Prisma.ClaimCreateNestedManyWithoutOrganizationInput
+  dunningRules?: Prisma.DunningRuleCreateNestedManyWithoutOrganizationInput
+  messageTemplates?: Prisma.MessageTemplateCreateNestedManyWithoutOrganizationInput
+  negotiationRule?: Prisma.NegotiationRuleCreateNestedOneWithoutOrganizationInput
+  incomingDeposits?: Prisma.IncomingDepositCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutAiVoiceSettingsInput = {
+  id?: string
+  name: string
+  type: $Enums.OrganizationType
+  createdAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
+  debtors?: Prisma.DebtorUncheckedCreateNestedManyWithoutOrganizationInput
+  claims?: Prisma.ClaimUncheckedCreateNestedManyWithoutOrganizationInput
+  dunningRules?: Prisma.DunningRuleUncheckedCreateNestedManyWithoutOrganizationInput
+  messageTemplates?: Prisma.MessageTemplateUncheckedCreateNestedManyWithoutOrganizationInput
+  negotiationRule?: Prisma.NegotiationRuleUncheckedCreateNestedOneWithoutOrganizationInput
+  incomingDeposits?: Prisma.IncomingDepositUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutAiVoiceSettingsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAiVoiceSettingsInput, Prisma.OrganizationUncheckedCreateWithoutAiVoiceSettingsInput>
+}
+
+export type OrganizationUpsertWithoutAiVoiceSettingsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAiVoiceSettingsInput, Prisma.OrganizationUncheckedUpdateWithoutAiVoiceSettingsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAiVoiceSettingsInput, Prisma.OrganizationUncheckedCreateWithoutAiVoiceSettingsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutAiVoiceSettingsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAiVoiceSettingsInput, Prisma.OrganizationUncheckedUpdateWithoutAiVoiceSettingsInput>
+}
+
+export type OrganizationUpdateWithoutAiVoiceSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumOrganizationTypeFieldUpdateOperationsInput | $Enums.OrganizationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
+  debtors?: Prisma.DebtorUpdateManyWithoutOrganizationNestedInput
+  claims?: Prisma.ClaimUpdateManyWithoutOrganizationNestedInput
+  dunningRules?: Prisma.DunningRuleUpdateManyWithoutOrganizationNestedInput
+  messageTemplates?: Prisma.MessageTemplateUpdateManyWithoutOrganizationNestedInput
+  negotiationRule?: Prisma.NegotiationRuleUpdateOneWithoutOrganizationNestedInput
+  incomingDeposits?: Prisma.IncomingDepositUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutAiVoiceSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumOrganizationTypeFieldUpdateOperationsInput | $Enums.OrganizationType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
+  debtors?: Prisma.DebtorUncheckedUpdateManyWithoutOrganizationNestedInput
+  claims?: Prisma.ClaimUncheckedUpdateManyWithoutOrganizationNestedInput
+  dunningRules?: Prisma.DunningRuleUncheckedUpdateManyWithoutOrganizationNestedInput
+  messageTemplates?: Prisma.MessageTemplateUncheckedUpdateManyWithoutOrganizationNestedInput
+  negotiationRule?: Prisma.NegotiationRuleUncheckedUpdateOneWithoutOrganizationNestedInput
+  incomingDeposits?: Prisma.IncomingDepositUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -1011,6 +1132,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   messageTemplates?: boolean | Prisma.Organization$messageTemplatesArgs<ExtArgs>
   negotiationRule?: boolean | Prisma.Organization$negotiationRuleArgs<ExtArgs>
   incomingDeposits?: boolean | Prisma.Organization$incomingDepositsArgs<ExtArgs>
+  aiVoiceSettings?: boolean | Prisma.Organization$aiVoiceSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1044,6 +1166,7 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   messageTemplates?: boolean | Prisma.Organization$messageTemplatesArgs<ExtArgs>
   negotiationRule?: boolean | Prisma.Organization$negotiationRuleArgs<ExtArgs>
   incomingDeposits?: boolean | Prisma.Organization$incomingDepositsArgs<ExtArgs>
+  aiVoiceSettings?: boolean | Prisma.Organization$aiVoiceSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1059,6 +1182,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     messageTemplates: Prisma.$MessageTemplatePayload<ExtArgs>[]
     negotiationRule: Prisma.$NegotiationRulePayload<ExtArgs> | null
     incomingDeposits: Prisma.$IncomingDepositPayload<ExtArgs>[]
+    aiVoiceSettings: Prisma.$AiVoiceSettingsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1466,6 +1590,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   messageTemplates<T extends Prisma.Organization$messageTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$messageTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessageTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   negotiationRule<T extends Prisma.Organization$negotiationRuleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$negotiationRuleArgs<ExtArgs>>): Prisma.Prisma__NegotiationRuleClient<runtime.Types.Result.GetResult<Prisma.$NegotiationRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   incomingDeposits<T extends Prisma.Organization$incomingDepositsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$incomingDepositsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncomingDepositPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiVoiceSettings<T extends Prisma.Organization$aiVoiceSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$aiVoiceSettingsArgs<ExtArgs>>): Prisma.Prisma__AiVoiceSettingsClient<runtime.Types.Result.GetResult<Prisma.$AiVoiceSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2052,6 +2177,25 @@ export type Organization$incomingDepositsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.IncomingDepositScalarFieldEnum | Prisma.IncomingDepositScalarFieldEnum[]
+}
+
+/**
+ * Organization.aiVoiceSettings
+ */
+export type Organization$aiVoiceSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiVoiceSettings
+   */
+  select?: Prisma.AiVoiceSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiVoiceSettings
+   */
+  omit?: Prisma.AiVoiceSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiVoiceSettingsInclude<ExtArgs> | null
+  where?: Prisma.AiVoiceSettingsWhereInput
 }
 
 /**

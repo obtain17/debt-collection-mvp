@@ -430,6 +430,7 @@ export type ClaimWhereInput = {
   notes?: Prisma.NoteListRelationFilter
   complianceFlags?: Prisma.ComplianceFlagListRelationFilter
   scheduleItems?: Prisma.PaymentScheduleItemListRelationFilter
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogListRelationFilter
 }
 
 export type ClaimOrderByWithRelationInput = {
@@ -475,6 +476,7 @@ export type ClaimOrderByWithRelationInput = {
   notes?: Prisma.NoteOrderByRelationAggregateInput
   complianceFlags?: Prisma.ComplianceFlagOrderByRelationAggregateInput
   scheduleItems?: Prisma.PaymentScheduleItemOrderByRelationAggregateInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogOrderByRelationAggregateInput
 }
 
 export type ClaimWhereUniqueInput = Prisma.AtLeast<{
@@ -523,6 +525,7 @@ export type ClaimWhereUniqueInput = Prisma.AtLeast<{
   notes?: Prisma.NoteListRelationFilter
   complianceFlags?: Prisma.ComplianceFlagListRelationFilter
   scheduleItems?: Prisma.PaymentScheduleItemListRelationFilter
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogListRelationFilter
 }, "id" | "latestAnalysisId" | "virtualAccountNumber">
 
 export type ClaimOrderByWithAggregationInput = {
@@ -633,6 +636,7 @@ export type ClaimCreateInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateInput = {
@@ -673,6 +677,7 @@ export type ClaimUncheckedCreateInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUpdateInput = {
@@ -713,6 +718,7 @@ export type ClaimUpdateInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateInput = {
@@ -753,6 +759,7 @@ export type ClaimUncheckedUpdateInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateManyInput = {
@@ -1317,6 +1324,20 @@ export type ClaimUpdateOneRequiredWithoutComplianceFlagsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClaimUpdateToOneWithWhereWithoutComplianceFlagsInput, Prisma.ClaimUpdateWithoutComplianceFlagsInput>, Prisma.ClaimUncheckedUpdateWithoutComplianceFlagsInput>
 }
 
+export type ClaimCreateNestedOneWithoutAiVoiceCallLogsInput = {
+  create?: Prisma.XOR<Prisma.ClaimCreateWithoutAiVoiceCallLogsInput, Prisma.ClaimUncheckedCreateWithoutAiVoiceCallLogsInput>
+  connectOrCreate?: Prisma.ClaimCreateOrConnectWithoutAiVoiceCallLogsInput
+  connect?: Prisma.ClaimWhereUniqueInput
+}
+
+export type ClaimUpdateOneRequiredWithoutAiVoiceCallLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.ClaimCreateWithoutAiVoiceCallLogsInput, Prisma.ClaimUncheckedCreateWithoutAiVoiceCallLogsInput>
+  connectOrCreate?: Prisma.ClaimCreateOrConnectWithoutAiVoiceCallLogsInput
+  upsert?: Prisma.ClaimUpsertWithoutAiVoiceCallLogsInput
+  connect?: Prisma.ClaimWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClaimUpdateToOneWithWhereWithoutAiVoiceCallLogsInput, Prisma.ClaimUpdateWithoutAiVoiceCallLogsInput>, Prisma.ClaimUncheckedUpdateWithoutAiVoiceCallLogsInput>
+}
+
 export type ClaimCreateNestedOneWithoutScheduleItemsInput = {
   create?: Prisma.XOR<Prisma.ClaimCreateWithoutScheduleItemsInput, Prisma.ClaimUncheckedCreateWithoutScheduleItemsInput>
   connectOrCreate?: Prisma.ClaimCreateOrConnectWithoutScheduleItemsInput
@@ -1368,6 +1389,7 @@ export type ClaimCreateWithoutOrganizationInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutOrganizationInput = {
@@ -1407,6 +1429,7 @@ export type ClaimUncheckedCreateWithoutOrganizationInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutOrganizationInput = {
@@ -1506,6 +1529,7 @@ export type ClaimCreateWithoutAssignedAgentInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutAssignedAgentInput = {
@@ -1545,6 +1569,7 @@ export type ClaimUncheckedCreateWithoutAssignedAgentInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutAssignedAgentInput = {
@@ -1610,6 +1635,7 @@ export type ClaimCreateWithoutDebtorInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutDebtorInput = {
@@ -1649,6 +1675,7 @@ export type ClaimUncheckedCreateWithoutDebtorInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutDebtorInput = {
@@ -1714,6 +1741,7 @@ export type ClaimCreateWithoutPaymentsInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutPaymentsInput = {
@@ -1753,6 +1781,7 @@ export type ClaimUncheckedCreateWithoutPaymentsInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutPaymentsInput = {
@@ -1808,6 +1837,7 @@ export type ClaimUpdateWithoutPaymentsInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutPaymentsInput = {
@@ -1847,6 +1877,7 @@ export type ClaimUncheckedUpdateWithoutPaymentsInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateWithoutAnalysesInput = {
@@ -1886,6 +1917,7 @@ export type ClaimCreateWithoutAnalysesInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutAnalysesInput = {
@@ -1925,6 +1957,7 @@ export type ClaimUncheckedCreateWithoutAnalysesInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutAnalysesInput = {
@@ -1969,6 +2002,7 @@ export type ClaimCreateWithoutLatestAnalysisInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutLatestAnalysisInput = {
@@ -2008,6 +2042,7 @@ export type ClaimUncheckedCreateWithoutLatestAnalysisInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutLatestAnalysisInput = {
@@ -2063,6 +2098,7 @@ export type ClaimUpdateWithoutAnalysesInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutAnalysesInput = {
@@ -2102,6 +2138,7 @@ export type ClaimUncheckedUpdateWithoutAnalysesInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUpsertWithoutLatestAnalysisInput = {
@@ -2152,6 +2189,7 @@ export type ClaimUpdateWithoutLatestAnalysisInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutLatestAnalysisInput = {
@@ -2191,6 +2229,7 @@ export type ClaimUncheckedUpdateWithoutLatestAnalysisInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateWithoutDunningRuleInput = {
@@ -2230,6 +2269,7 @@ export type ClaimCreateWithoutDunningRuleInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutDunningRuleInput = {
@@ -2269,6 +2309,7 @@ export type ClaimUncheckedCreateWithoutDunningRuleInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutDunningRuleInput = {
@@ -2334,6 +2375,7 @@ export type ClaimCreateWithoutScheduledCommunicationsInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutScheduledCommunicationsInput = {
@@ -2373,6 +2415,7 @@ export type ClaimUncheckedCreateWithoutScheduledCommunicationsInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutScheduledCommunicationsInput = {
@@ -2428,6 +2471,7 @@ export type ClaimUpdateWithoutScheduledCommunicationsInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutScheduledCommunicationsInput = {
@@ -2467,6 +2511,7 @@ export type ClaimUncheckedUpdateWithoutScheduledCommunicationsInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateWithoutAccessTokensInput = {
@@ -2506,6 +2551,7 @@ export type ClaimCreateWithoutAccessTokensInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutAccessTokensInput = {
@@ -2545,6 +2591,7 @@ export type ClaimUncheckedCreateWithoutAccessTokensInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutAccessTokensInput = {
@@ -2600,6 +2647,7 @@ export type ClaimUpdateWithoutAccessTokensInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutAccessTokensInput = {
@@ -2639,6 +2687,7 @@ export type ClaimUncheckedUpdateWithoutAccessTokensInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateWithoutProposalsInput = {
@@ -2678,6 +2727,7 @@ export type ClaimCreateWithoutProposalsInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutProposalsInput = {
@@ -2717,6 +2767,7 @@ export type ClaimUncheckedCreateWithoutProposalsInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutProposalsInput = {
@@ -2772,6 +2823,7 @@ export type ClaimUpdateWithoutProposalsInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutProposalsInput = {
@@ -2811,6 +2863,7 @@ export type ClaimUncheckedUpdateWithoutProposalsInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateWithoutActivityLogsInput = {
@@ -2850,6 +2903,7 @@ export type ClaimCreateWithoutActivityLogsInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutActivityLogsInput = {
@@ -2889,6 +2943,7 @@ export type ClaimUncheckedCreateWithoutActivityLogsInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutActivityLogsInput = {
@@ -2944,6 +2999,7 @@ export type ClaimUpdateWithoutActivityLogsInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutActivityLogsInput = {
@@ -2983,6 +3039,7 @@ export type ClaimUncheckedUpdateWithoutActivityLogsInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateWithoutNotesInput = {
@@ -3022,6 +3079,7 @@ export type ClaimCreateWithoutNotesInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutNotesInput = {
@@ -3061,6 +3119,7 @@ export type ClaimUncheckedCreateWithoutNotesInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutNotesInput = {
@@ -3116,6 +3175,7 @@ export type ClaimUpdateWithoutNotesInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutNotesInput = {
@@ -3155,6 +3215,7 @@ export type ClaimUncheckedUpdateWithoutNotesInput = {
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateWithoutComplianceFlagsInput = {
@@ -3194,6 +3255,7 @@ export type ClaimCreateWithoutComplianceFlagsInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutClaimInput
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutComplianceFlagsInput = {
@@ -3233,6 +3295,7 @@ export type ClaimUncheckedCreateWithoutComplianceFlagsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutClaimInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutComplianceFlagsInput = {
@@ -3288,6 +3351,7 @@ export type ClaimUpdateWithoutComplianceFlagsInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutClaimNestedInput
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutComplianceFlagsInput = {
@@ -3326,6 +3390,183 @@ export type ClaimUncheckedUpdateWithoutComplianceFlagsInput = {
   proposals?: Prisma.PaymentPlanProposalUncheckedUpdateManyWithoutClaimNestedInput
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutClaimNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
+  scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
+}
+
+export type ClaimCreateWithoutAiVoiceCallLogsInput = {
+  id?: string
+  claimType: string
+  principalAmount: number
+  currentBalance: number
+  currency?: string
+  originalDueDate: Date | string
+  status?: $Enums.ClaimStatus
+  hasCollateral?: boolean
+  collateralDescription?: string | null
+  priorDefaultCount?: number
+  originalCreditorName?: string | null
+  claimAcquiredAt?: Date | string | null
+  acquisitionPrice?: number | null
+  interestAmount?: number
+  lateDamageAmount?: number
+  contractDate?: Date | string | null
+  statuteLimitationDate?: Date | string | null
+  legalTitles?: Prisma.ClaimCreatelegalTitlesInput | $Enums.LegalTitleType[]
+  hasGuarantor?: boolean
+  guarantorDescription?: string | null
+  virtualAccountNumber?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutClaimsInput
+  debtor: Prisma.DebtorCreateNestedOneWithoutClaimsInput
+  assignedAgent?: Prisma.UserCreateNestedOneWithoutAssignedClaimsInput
+  latestAnalysis?: Prisma.ClaimAnalysisCreateNestedOneWithoutLatestForClaimInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutClaimInput
+  analyses?: Prisma.ClaimAnalysisCreateNestedManyWithoutClaimInput
+  dunningRule?: Prisma.DunningRuleCreateNestedOneWithoutClaimsInput
+  scheduledCommunications?: Prisma.ScheduledCommunicationCreateNestedManyWithoutClaimInput
+  accessTokens?: Prisma.NegotiationAccessTokenCreateNestedManyWithoutClaimInput
+  proposals?: Prisma.PaymentPlanProposalCreateNestedManyWithoutClaimInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutClaimInput
+  notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
+  complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
+  scheduleItems?: Prisma.PaymentScheduleItemCreateNestedManyWithoutClaimInput
+}
+
+export type ClaimUncheckedCreateWithoutAiVoiceCallLogsInput = {
+  id?: string
+  organizationId: string
+  debtorId: string
+  assignedAgentId?: string | null
+  claimType: string
+  principalAmount: number
+  currentBalance: number
+  currency?: string
+  originalDueDate: Date | string
+  status?: $Enums.ClaimStatus
+  hasCollateral?: boolean
+  collateralDescription?: string | null
+  priorDefaultCount?: number
+  latestAnalysisId?: string | null
+  originalCreditorName?: string | null
+  claimAcquiredAt?: Date | string | null
+  acquisitionPrice?: number | null
+  interestAmount?: number
+  lateDamageAmount?: number
+  contractDate?: Date | string | null
+  statuteLimitationDate?: Date | string | null
+  legalTitles?: Prisma.ClaimCreatelegalTitlesInput | $Enums.LegalTitleType[]
+  hasGuarantor?: boolean
+  guarantorDescription?: string | null
+  virtualAccountNumber?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  dunningRuleId?: string | null
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClaimInput
+  analyses?: Prisma.ClaimAnalysisUncheckedCreateNestedManyWithoutClaimInput
+  scheduledCommunications?: Prisma.ScheduledCommunicationUncheckedCreateNestedManyWithoutClaimInput
+  accessTokens?: Prisma.NegotiationAccessTokenUncheckedCreateNestedManyWithoutClaimInput
+  proposals?: Prisma.PaymentPlanProposalUncheckedCreateNestedManyWithoutClaimInput
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutClaimInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
+  complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
+  scheduleItems?: Prisma.PaymentScheduleItemUncheckedCreateNestedManyWithoutClaimInput
+}
+
+export type ClaimCreateOrConnectWithoutAiVoiceCallLogsInput = {
+  where: Prisma.ClaimWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClaimCreateWithoutAiVoiceCallLogsInput, Prisma.ClaimUncheckedCreateWithoutAiVoiceCallLogsInput>
+}
+
+export type ClaimUpsertWithoutAiVoiceCallLogsInput = {
+  update: Prisma.XOR<Prisma.ClaimUpdateWithoutAiVoiceCallLogsInput, Prisma.ClaimUncheckedUpdateWithoutAiVoiceCallLogsInput>
+  create: Prisma.XOR<Prisma.ClaimCreateWithoutAiVoiceCallLogsInput, Prisma.ClaimUncheckedCreateWithoutAiVoiceCallLogsInput>
+  where?: Prisma.ClaimWhereInput
+}
+
+export type ClaimUpdateToOneWithWhereWithoutAiVoiceCallLogsInput = {
+  where?: Prisma.ClaimWhereInput
+  data: Prisma.XOR<Prisma.ClaimUpdateWithoutAiVoiceCallLogsInput, Prisma.ClaimUncheckedUpdateWithoutAiVoiceCallLogsInput>
+}
+
+export type ClaimUpdateWithoutAiVoiceCallLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  claimType?: Prisma.StringFieldUpdateOperationsInput | string
+  principalAmount?: Prisma.IntFieldUpdateOperationsInput | number
+  currentBalance?: Prisma.IntFieldUpdateOperationsInput | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  originalDueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+  hasCollateral?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  collateralDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priorDefaultCount?: Prisma.IntFieldUpdateOperationsInput | number
+  originalCreditorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claimAcquiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  acquisitionPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  interestAmount?: Prisma.IntFieldUpdateOperationsInput | number
+  lateDamageAmount?: Prisma.IntFieldUpdateOperationsInput | number
+  contractDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  statuteLimitationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  legalTitles?: Prisma.ClaimUpdatelegalTitlesInput | $Enums.LegalTitleType[]
+  hasGuarantor?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  guarantorDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  virtualAccountNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutClaimsNestedInput
+  debtor?: Prisma.DebtorUpdateOneRequiredWithoutClaimsNestedInput
+  assignedAgent?: Prisma.UserUpdateOneWithoutAssignedClaimsNestedInput
+  latestAnalysis?: Prisma.ClaimAnalysisUpdateOneWithoutLatestForClaimNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutClaimNestedInput
+  analyses?: Prisma.ClaimAnalysisUpdateManyWithoutClaimNestedInput
+  dunningRule?: Prisma.DunningRuleUpdateOneWithoutClaimsNestedInput
+  scheduledCommunications?: Prisma.ScheduledCommunicationUpdateManyWithoutClaimNestedInput
+  accessTokens?: Prisma.NegotiationAccessTokenUpdateManyWithoutClaimNestedInput
+  proposals?: Prisma.PaymentPlanProposalUpdateManyWithoutClaimNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutClaimNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
+  complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
+  scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+}
+
+export type ClaimUncheckedUpdateWithoutAiVoiceCallLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  debtorId?: Prisma.StringFieldUpdateOperationsInput | string
+  assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claimType?: Prisma.StringFieldUpdateOperationsInput | string
+  principalAmount?: Prisma.IntFieldUpdateOperationsInput | number
+  currentBalance?: Prisma.IntFieldUpdateOperationsInput | number
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  originalDueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+  hasCollateral?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  collateralDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  priorDefaultCount?: Prisma.IntFieldUpdateOperationsInput | number
+  latestAnalysisId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  originalCreditorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  claimAcquiredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  acquisitionPrice?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  interestAmount?: Prisma.IntFieldUpdateOperationsInput | number
+  lateDamageAmount?: Prisma.IntFieldUpdateOperationsInput | number
+  contractDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  statuteLimitationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  legalTitles?: Prisma.ClaimUpdatelegalTitlesInput | $Enums.LegalTitleType[]
+  hasGuarantor?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  guarantorDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  virtualAccountNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dunningRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutClaimNestedInput
+  analyses?: Prisma.ClaimAnalysisUncheckedUpdateManyWithoutClaimNestedInput
+  scheduledCommunications?: Prisma.ScheduledCommunicationUncheckedUpdateManyWithoutClaimNestedInput
+  accessTokens?: Prisma.NegotiationAccessTokenUncheckedUpdateManyWithoutClaimNestedInput
+  proposals?: Prisma.PaymentPlanProposalUncheckedUpdateManyWithoutClaimNestedInput
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutClaimNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
+  complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
 }
 
@@ -3366,6 +3607,7 @@ export type ClaimCreateWithoutScheduleItemsInput = {
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutClaimInput
   notes?: Prisma.NoteCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimUncheckedCreateWithoutScheduleItemsInput = {
@@ -3405,6 +3647,7 @@ export type ClaimUncheckedCreateWithoutScheduleItemsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutClaimInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutClaimInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedCreateNestedManyWithoutClaimInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedCreateNestedManyWithoutClaimInput
 }
 
 export type ClaimCreateOrConnectWithoutScheduleItemsInput = {
@@ -3460,6 +3703,7 @@ export type ClaimUpdateWithoutScheduleItemsInput = {
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutClaimNestedInput
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutScheduleItemsInput = {
@@ -3499,6 +3743,7 @@ export type ClaimUncheckedUpdateWithoutScheduleItemsInput = {
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutClaimNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimCreateManyOrganizationInput = {
@@ -3568,6 +3813,7 @@ export type ClaimUpdateWithoutOrganizationInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutOrganizationInput = {
@@ -3607,6 +3853,7 @@ export type ClaimUncheckedUpdateWithoutOrganizationInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateManyWithoutOrganizationInput = {
@@ -3706,6 +3953,7 @@ export type ClaimUpdateWithoutAssignedAgentInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutAssignedAgentInput = {
@@ -3745,6 +3993,7 @@ export type ClaimUncheckedUpdateWithoutAssignedAgentInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateManyWithoutAssignedAgentInput = {
@@ -3844,6 +4093,7 @@ export type ClaimUpdateWithoutDebtorInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutDebtorInput = {
@@ -3883,6 +4133,7 @@ export type ClaimUncheckedUpdateWithoutDebtorInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateManyWithoutDebtorInput = {
@@ -3982,6 +4233,7 @@ export type ClaimUpdateWithoutDunningRuleInput = {
   notes?: Prisma.NoteUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateWithoutDunningRuleInput = {
@@ -4021,6 +4273,7 @@ export type ClaimUncheckedUpdateWithoutDunningRuleInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutClaimNestedInput
   complianceFlags?: Prisma.ComplianceFlagUncheckedUpdateManyWithoutClaimNestedInput
   scheduleItems?: Prisma.PaymentScheduleItemUncheckedUpdateManyWithoutClaimNestedInput
+  aiVoiceCallLogs?: Prisma.AiVoiceCallLogUncheckedUpdateManyWithoutClaimNestedInput
 }
 
 export type ClaimUncheckedUpdateManyWithoutDunningRuleInput = {
@@ -4068,6 +4321,7 @@ export type ClaimCountOutputType = {
   notes: number
   complianceFlags: number
   scheduleItems: number
+  aiVoiceCallLogs: number
 }
 
 export type ClaimCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4080,6 +4334,7 @@ export type ClaimCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   notes?: boolean | ClaimCountOutputTypeCountNotesArgs
   complianceFlags?: boolean | ClaimCountOutputTypeCountComplianceFlagsArgs
   scheduleItems?: boolean | ClaimCountOutputTypeCountScheduleItemsArgs
+  aiVoiceCallLogs?: boolean | ClaimCountOutputTypeCountAiVoiceCallLogsArgs
 }
 
 /**
@@ -4155,6 +4410,13 @@ export type ClaimCountOutputTypeCountScheduleItemsArgs<ExtArgs extends runtime.T
   where?: Prisma.PaymentScheduleItemWhereInput
 }
 
+/**
+ * ClaimCountOutputType without action
+ */
+export type ClaimCountOutputTypeCountAiVoiceCallLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AiVoiceCallLogWhereInput
+}
+
 
 export type ClaimSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4199,6 +4461,7 @@ export type ClaimSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   notes?: boolean | Prisma.Claim$notesArgs<ExtArgs>
   complianceFlags?: boolean | Prisma.Claim$complianceFlagsArgs<ExtArgs>
   scheduleItems?: boolean | Prisma.Claim$scheduleItemsArgs<ExtArgs>
+  aiVoiceCallLogs?: boolean | Prisma.Claim$aiVoiceCallLogsArgs<ExtArgs>
   _count?: boolean | Prisma.ClaimCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["claim"]>
 
@@ -4321,6 +4584,7 @@ export type ClaimInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   notes?: boolean | Prisma.Claim$notesArgs<ExtArgs>
   complianceFlags?: boolean | Prisma.Claim$complianceFlagsArgs<ExtArgs>
   scheduleItems?: boolean | Prisma.Claim$scheduleItemsArgs<ExtArgs>
+  aiVoiceCallLogs?: boolean | Prisma.Claim$aiVoiceCallLogsArgs<ExtArgs>
   _count?: boolean | Prisma.ClaimCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClaimIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4355,6 +4619,7 @@ export type $ClaimPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     notes: Prisma.$NotePayload<ExtArgs>[]
     complianceFlags: Prisma.$ComplianceFlagPayload<ExtArgs>[]
     scheduleItems: Prisma.$PaymentScheduleItemPayload<ExtArgs>[]
+    aiVoiceCallLogs: Prisma.$AiVoiceCallLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4793,6 +5058,7 @@ export interface Prisma__ClaimClient<T, Null = never, ExtArgs extends runtime.Ty
   notes<T extends Prisma.Claim$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Claim$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   complianceFlags<T extends Prisma.Claim$complianceFlagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Claim$complianceFlagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplianceFlagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   scheduleItems<T extends Prisma.Claim$scheduleItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Claim$scheduleItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentScheduleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiVoiceCallLogs<T extends Prisma.Claim$aiVoiceCallLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Claim$aiVoiceCallLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiVoiceCallLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5521,6 +5787,30 @@ export type Claim$scheduleItemsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.PaymentScheduleItemScalarFieldEnum | Prisma.PaymentScheduleItemScalarFieldEnum[]
+}
+
+/**
+ * Claim.aiVoiceCallLogs
+ */
+export type Claim$aiVoiceCallLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiVoiceCallLog
+   */
+  select?: Prisma.AiVoiceCallLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiVoiceCallLog
+   */
+  omit?: Prisma.AiVoiceCallLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiVoiceCallLogInclude<ExtArgs> | null
+  where?: Prisma.AiVoiceCallLogWhereInput
+  orderBy?: Prisma.AiVoiceCallLogOrderByWithRelationInput | Prisma.AiVoiceCallLogOrderByWithRelationInput[]
+  cursor?: Prisma.AiVoiceCallLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AiVoiceCallLogScalarFieldEnum | Prisma.AiVoiceCallLogScalarFieldEnum[]
 }
 
 /**

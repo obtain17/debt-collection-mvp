@@ -8,6 +8,7 @@ import { runClaimAnalysis } from "@/lib/ai/runClaimAnalysis";
 import { COMPLIANCE_FLAG_LABEL, CONTACT_EVENT_LABEL } from "@/lib/format";
 import { checkProhibitedExpressions } from "@/lib/dunning/prohibitedExpressions";
 import { createPaymentForClaim } from "@/lib/payments/createPaymentForClaim";
+import { placeAiVoiceCall } from "@/lib/voice/placeAiVoiceCall";
 import type { $Enums } from "@/generated/prisma/client";
 
 async function assertClaimInOrg(claimId: string, organizationId: string) {
@@ -282,6 +283,15 @@ export async function clearComplianceFlag(claimId: string, flagId: string) {
       metadata: { flagType: flag.flagType },
     },
   });
+
+  revalidatePath(`/cases/${claimId}`);
+}
+
+export async function placeAdHocAiVoiceCall(claimId: string) {
+  const session = await requireSession();
+  await assertClaimInOrg(claimId, session.organizationId);
+
+  await placeAiVoiceCall({ claimId, actingUserId: session.userId });
 
   revalidatePath(`/cases/${claimId}`);
 }

@@ -127,6 +127,24 @@ export type NegotiationRule = Prisma.NegotiationRuleModel
  */
 export type IncomingDeposit = Prisma.IncomingDepositModel
 /**
+ * Model AiVoiceSettings
+ * *
+ *  * Org-level configuration for AI音声自動督促 (項目1)。実際の電話回線接続は
+ *  * このMVPでは行わず(シミュレーション)、有効化フラグとプロバイダ選択・発信可能
+ *  * 時間帯のみを保持する。本人確認前の債権内容非開示・弁護士介入等での即時停止・
+ *  * 減額交渉の人間限定は、常時有効な固定ルールとして lib/voice 側で強制する
+ *  * (トグルで無効化できるコンプライアンス項目としては扱わない)。
+ */
+export type AiVoiceSettings = Prisma.AiVoiceSettingsModel
+/**
+ * Model AiVoiceCallLog
+ * *
+ *  * One row per simulated AI voice call attempt (項目1・3の通話録音/文字起こし/
+ *  * 要約画面のデータ源)。scheduledCommunicationId は督促スケジュール経由の発信の
+ *  * 場合のみセットされ、ケース詳細からの即時デモ実行では null のまま。
+ */
+export type AiVoiceCallLog = Prisma.AiVoiceCallLogModel
+/**
  * Model PaymentScheduleItem
  * 
  */

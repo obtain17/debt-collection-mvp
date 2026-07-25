@@ -9,6 +9,8 @@ export default async function SettingsIndexPage() {
     { href: "/settings/dunning-rules", label: "自動督促の設定", description: "督促シナリオのステップ(日数・チャネル・トーン)を管理します。" },
     { href: "/settings/message-templates", label: "文面テンプレート", description: "督促文面のテンプレートを作成・法務確認済みフラグを管理します。" },
     { href: "/settings/negotiation-rules", label: "交渉条件ルール", description: "減額率・分割回数・承認しきい値等の交渉ポリシーを設定します。" },
+    { href: "/settings/ai-voice", label: "AI音声自動督促", description: "AI音声通話の有効化・プロバイダ選択・発信対象確認・通話記録の確認を行います。" },
+    { href: "/settings/audit-log", label: "監査ログ", description: "督促送信・AI分析・ポータルアクセス・承認等の操作履歴を横断的に確認します。" },
   ];
 
   return (

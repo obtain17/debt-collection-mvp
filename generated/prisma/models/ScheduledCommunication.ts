@@ -257,6 +257,7 @@ export type ScheduledCommunicationWhereInput = {
   claim?: Prisma.XOR<Prisma.ClaimScalarRelationFilter, Prisma.ClaimWhereInput>
   dunningStep?: Prisma.XOR<Prisma.DunningStepNullableScalarRelationFilter, Prisma.DunningStepWhereInput> | null
   approvedByUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  aiVoiceCallLog?: Prisma.XOR<Prisma.AiVoiceCallLogNullableScalarRelationFilter, Prisma.AiVoiceCallLogWhereInput> | null
 }
 
 export type ScheduledCommunicationOrderByWithRelationInput = {
@@ -277,6 +278,7 @@ export type ScheduledCommunicationOrderByWithRelationInput = {
   claim?: Prisma.ClaimOrderByWithRelationInput
   dunningStep?: Prisma.DunningStepOrderByWithRelationInput
   approvedByUser?: Prisma.UserOrderByWithRelationInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogOrderByWithRelationInput
 }
 
 export type ScheduledCommunicationWhereUniqueInput = Prisma.AtLeast<{
@@ -300,6 +302,7 @@ export type ScheduledCommunicationWhereUniqueInput = Prisma.AtLeast<{
   claim?: Prisma.XOR<Prisma.ClaimScalarRelationFilter, Prisma.ClaimWhereInput>
   dunningStep?: Prisma.XOR<Prisma.DunningStepNullableScalarRelationFilter, Prisma.DunningStepWhereInput> | null
   approvedByUser?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  aiVoiceCallLog?: Prisma.XOR<Prisma.AiVoiceCallLogNullableScalarRelationFilter, Prisma.AiVoiceCallLogWhereInput> | null
 }, "id">
 
 export type ScheduledCommunicationOrderByWithAggregationInput = {
@@ -357,6 +360,7 @@ export type ScheduledCommunicationCreateInput = {
   claim: Prisma.ClaimCreateNestedOneWithoutScheduledCommunicationsInput
   dunningStep?: Prisma.DunningStepCreateNestedOneWithoutScheduledCommunicationsInput
   approvedByUser?: Prisma.UserCreateNestedOneWithoutApprovedCommunicationsInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationUncheckedCreateInput = {
@@ -374,6 +378,7 @@ export type ScheduledCommunicationUncheckedCreateInput = {
   approvedByUserId?: string | null
   approvedAt?: Date | string | null
   mailClass?: $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationUpdateInput = {
@@ -391,6 +396,7 @@ export type ScheduledCommunicationUpdateInput = {
   claim?: Prisma.ClaimUpdateOneRequiredWithoutScheduledCommunicationsNestedInput
   dunningStep?: Prisma.DunningStepUpdateOneWithoutScheduledCommunicationsNestedInput
   approvedByUser?: Prisma.UserUpdateOneWithoutApprovedCommunicationsNestedInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationUncheckedUpdateInput = {
@@ -408,6 +414,7 @@ export type ScheduledCommunicationUncheckedUpdateInput = {
   approvedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationCreateManyInput = {
@@ -517,6 +524,11 @@ export type ScheduledCommunicationMinOrderByAggregateInput = {
   approvedByUserId?: Prisma.SortOrder
   approvedAt?: Prisma.SortOrder
   mailClass?: Prisma.SortOrder
+}
+
+export type ScheduledCommunicationNullableScalarRelationFilter = {
+  is?: Prisma.ScheduledCommunicationWhereInput | null
+  isNot?: Prisma.ScheduledCommunicationWhereInput | null
 }
 
 export type ScheduledCommunicationCreateNestedManyWithoutApprovedByUserInput = {
@@ -653,6 +665,22 @@ export type NullableEnumMailClassFieldUpdateOperationsInput = {
   set?: $Enums.MailClass | null
 }
 
+export type ScheduledCommunicationCreateNestedOneWithoutAiVoiceCallLogInput = {
+  create?: Prisma.XOR<Prisma.ScheduledCommunicationCreateWithoutAiVoiceCallLogInput, Prisma.ScheduledCommunicationUncheckedCreateWithoutAiVoiceCallLogInput>
+  connectOrCreate?: Prisma.ScheduledCommunicationCreateOrConnectWithoutAiVoiceCallLogInput
+  connect?: Prisma.ScheduledCommunicationWhereUniqueInput
+}
+
+export type ScheduledCommunicationUpdateOneWithoutAiVoiceCallLogNestedInput = {
+  create?: Prisma.XOR<Prisma.ScheduledCommunicationCreateWithoutAiVoiceCallLogInput, Prisma.ScheduledCommunicationUncheckedCreateWithoutAiVoiceCallLogInput>
+  connectOrCreate?: Prisma.ScheduledCommunicationCreateOrConnectWithoutAiVoiceCallLogInput
+  upsert?: Prisma.ScheduledCommunicationUpsertWithoutAiVoiceCallLogInput
+  disconnect?: Prisma.ScheduledCommunicationWhereInput | boolean
+  delete?: Prisma.ScheduledCommunicationWhereInput | boolean
+  connect?: Prisma.ScheduledCommunicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ScheduledCommunicationUpdateToOneWithWhereWithoutAiVoiceCallLogInput, Prisma.ScheduledCommunicationUpdateWithoutAiVoiceCallLogInput>, Prisma.ScheduledCommunicationUncheckedUpdateWithoutAiVoiceCallLogInput>
+}
+
 export type ScheduledCommunicationCreateWithoutApprovedByUserInput = {
   id?: string
   scheduledFor: Date | string
@@ -667,6 +695,7 @@ export type ScheduledCommunicationCreateWithoutApprovedByUserInput = {
   mailClass?: $Enums.MailClass | null
   claim: Prisma.ClaimCreateNestedOneWithoutScheduledCommunicationsInput
   dunningStep?: Prisma.DunningStepCreateNestedOneWithoutScheduledCommunicationsInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationUncheckedCreateWithoutApprovedByUserInput = {
@@ -683,6 +712,7 @@ export type ScheduledCommunicationUncheckedCreateWithoutApprovedByUserInput = {
   createdAt?: Date | string
   approvedAt?: Date | string | null
   mailClass?: $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationCreateOrConnectWithoutApprovedByUserInput = {
@@ -745,6 +775,7 @@ export type ScheduledCommunicationCreateWithoutClaimInput = {
   mailClass?: $Enums.MailClass | null
   dunningStep?: Prisma.DunningStepCreateNestedOneWithoutScheduledCommunicationsInput
   approvedByUser?: Prisma.UserCreateNestedOneWithoutApprovedCommunicationsInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationUncheckedCreateWithoutClaimInput = {
@@ -761,6 +792,7 @@ export type ScheduledCommunicationUncheckedCreateWithoutClaimInput = {
   approvedByUserId?: string | null
   approvedAt?: Date | string | null
   mailClass?: $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationCreateOrConnectWithoutClaimInput = {
@@ -803,6 +835,7 @@ export type ScheduledCommunicationCreateWithoutDunningStepInput = {
   mailClass?: $Enums.MailClass | null
   claim: Prisma.ClaimCreateNestedOneWithoutScheduledCommunicationsInput
   approvedByUser?: Prisma.UserCreateNestedOneWithoutApprovedCommunicationsInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationUncheckedCreateWithoutDunningStepInput = {
@@ -819,6 +852,7 @@ export type ScheduledCommunicationUncheckedCreateWithoutDunningStepInput = {
   approvedByUserId?: string | null
   approvedAt?: Date | string | null
   mailClass?: $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedCreateNestedOneWithoutScheduledCommunicationInput
 }
 
 export type ScheduledCommunicationCreateOrConnectWithoutDunningStepInput = {
@@ -845,6 +879,90 @@ export type ScheduledCommunicationUpdateWithWhereUniqueWithoutDunningStepInput =
 export type ScheduledCommunicationUpdateManyWithWhereWithoutDunningStepInput = {
   where: Prisma.ScheduledCommunicationScalarWhereInput
   data: Prisma.XOR<Prisma.ScheduledCommunicationUpdateManyMutationInput, Prisma.ScheduledCommunicationUncheckedUpdateManyWithoutDunningStepInput>
+}
+
+export type ScheduledCommunicationCreateWithoutAiVoiceCallLogInput = {
+  id?: string
+  scheduledFor: Date | string
+  channel: $Enums.Channel
+  status?: $Enums.CommunicationStatus
+  sentAt?: Date | string | null
+  subject?: string | null
+  body?: string | null
+  errorMessage?: string | null
+  createdAt?: Date | string
+  approvedAt?: Date | string | null
+  mailClass?: $Enums.MailClass | null
+  claim: Prisma.ClaimCreateNestedOneWithoutScheduledCommunicationsInput
+  dunningStep?: Prisma.DunningStepCreateNestedOneWithoutScheduledCommunicationsInput
+  approvedByUser?: Prisma.UserCreateNestedOneWithoutApprovedCommunicationsInput
+}
+
+export type ScheduledCommunicationUncheckedCreateWithoutAiVoiceCallLogInput = {
+  id?: string
+  claimId: string
+  dunningStepId?: string | null
+  scheduledFor: Date | string
+  channel: $Enums.Channel
+  status?: $Enums.CommunicationStatus
+  sentAt?: Date | string | null
+  subject?: string | null
+  body?: string | null
+  errorMessage?: string | null
+  createdAt?: Date | string
+  approvedByUserId?: string | null
+  approvedAt?: Date | string | null
+  mailClass?: $Enums.MailClass | null
+}
+
+export type ScheduledCommunicationCreateOrConnectWithoutAiVoiceCallLogInput = {
+  where: Prisma.ScheduledCommunicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ScheduledCommunicationCreateWithoutAiVoiceCallLogInput, Prisma.ScheduledCommunicationUncheckedCreateWithoutAiVoiceCallLogInput>
+}
+
+export type ScheduledCommunicationUpsertWithoutAiVoiceCallLogInput = {
+  update: Prisma.XOR<Prisma.ScheduledCommunicationUpdateWithoutAiVoiceCallLogInput, Prisma.ScheduledCommunicationUncheckedUpdateWithoutAiVoiceCallLogInput>
+  create: Prisma.XOR<Prisma.ScheduledCommunicationCreateWithoutAiVoiceCallLogInput, Prisma.ScheduledCommunicationUncheckedCreateWithoutAiVoiceCallLogInput>
+  where?: Prisma.ScheduledCommunicationWhereInput
+}
+
+export type ScheduledCommunicationUpdateToOneWithWhereWithoutAiVoiceCallLogInput = {
+  where?: Prisma.ScheduledCommunicationWhereInput
+  data: Prisma.XOR<Prisma.ScheduledCommunicationUpdateWithoutAiVoiceCallLogInput, Prisma.ScheduledCommunicationUncheckedUpdateWithoutAiVoiceCallLogInput>
+}
+
+export type ScheduledCommunicationUpdateWithoutAiVoiceCallLogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduledFor?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  status?: Prisma.EnumCommunicationStatusFieldUpdateOperationsInput | $Enums.CommunicationStatus
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
+  claim?: Prisma.ClaimUpdateOneRequiredWithoutScheduledCommunicationsNestedInput
+  dunningStep?: Prisma.DunningStepUpdateOneWithoutScheduledCommunicationsNestedInput
+  approvedByUser?: Prisma.UserUpdateOneWithoutApprovedCommunicationsNestedInput
+}
+
+export type ScheduledCommunicationUncheckedUpdateWithoutAiVoiceCallLogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  claimId?: Prisma.StringFieldUpdateOperationsInput | string
+  dunningStepId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scheduledFor?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  status?: Prisma.EnumCommunicationStatusFieldUpdateOperationsInput | $Enums.CommunicationStatus
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  approvedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
 }
 
 export type ScheduledCommunicationCreateManyApprovedByUserInput = {
@@ -877,6 +995,7 @@ export type ScheduledCommunicationUpdateWithoutApprovedByUserInput = {
   mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
   claim?: Prisma.ClaimUpdateOneRequiredWithoutScheduledCommunicationsNestedInput
   dunningStep?: Prisma.DunningStepUpdateOneWithoutScheduledCommunicationsNestedInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationUncheckedUpdateWithoutApprovedByUserInput = {
@@ -893,6 +1012,7 @@ export type ScheduledCommunicationUncheckedUpdateWithoutApprovedByUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationUncheckedUpdateManyWithoutApprovedByUserInput = {
@@ -941,6 +1061,7 @@ export type ScheduledCommunicationUpdateWithoutClaimInput = {
   mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
   dunningStep?: Prisma.DunningStepUpdateOneWithoutScheduledCommunicationsNestedInput
   approvedByUser?: Prisma.UserUpdateOneWithoutApprovedCommunicationsNestedInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationUncheckedUpdateWithoutClaimInput = {
@@ -957,6 +1078,7 @@ export type ScheduledCommunicationUncheckedUpdateWithoutClaimInput = {
   approvedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationUncheckedUpdateManyWithoutClaimInput = {
@@ -1005,6 +1127,7 @@ export type ScheduledCommunicationUpdateWithoutDunningStepInput = {
   mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
   claim?: Prisma.ClaimUpdateOneRequiredWithoutScheduledCommunicationsNestedInput
   approvedByUser?: Prisma.UserUpdateOneWithoutApprovedCommunicationsNestedInput
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationUncheckedUpdateWithoutDunningStepInput = {
@@ -1021,6 +1144,7 @@ export type ScheduledCommunicationUncheckedUpdateWithoutDunningStepInput = {
   approvedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mailClass?: Prisma.NullableEnumMailClassFieldUpdateOperationsInput | $Enums.MailClass | null
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogUncheckedUpdateOneWithoutScheduledCommunicationNestedInput
 }
 
 export type ScheduledCommunicationUncheckedUpdateManyWithoutDunningStepInput = {
@@ -1059,6 +1183,7 @@ export type ScheduledCommunicationSelect<ExtArgs extends runtime.Types.Extension
   claim?: boolean | Prisma.ClaimDefaultArgs<ExtArgs>
   dunningStep?: boolean | Prisma.ScheduledCommunication$dunningStepArgs<ExtArgs>
   approvedByUser?: boolean | Prisma.ScheduledCommunication$approvedByUserArgs<ExtArgs>
+  aiVoiceCallLog?: boolean | Prisma.ScheduledCommunication$aiVoiceCallLogArgs<ExtArgs>
 }, ExtArgs["result"]["scheduledCommunication"]>
 
 export type ScheduledCommunicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1123,6 +1248,7 @@ export type ScheduledCommunicationInclude<ExtArgs extends runtime.Types.Extensio
   claim?: boolean | Prisma.ClaimDefaultArgs<ExtArgs>
   dunningStep?: boolean | Prisma.ScheduledCommunication$dunningStepArgs<ExtArgs>
   approvedByUser?: boolean | Prisma.ScheduledCommunication$approvedByUserArgs<ExtArgs>
+  aiVoiceCallLog?: boolean | Prisma.ScheduledCommunication$aiVoiceCallLogArgs<ExtArgs>
 }
 export type ScheduledCommunicationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   claim?: boolean | Prisma.ClaimDefaultArgs<ExtArgs>
@@ -1141,6 +1267,7 @@ export type $ScheduledCommunicationPayload<ExtArgs extends runtime.Types.Extensi
     claim: Prisma.$ClaimPayload<ExtArgs>
     dunningStep: Prisma.$DunningStepPayload<ExtArgs> | null
     approvedByUser: Prisma.$UserPayload<ExtArgs> | null
+    aiVoiceCallLog: Prisma.$AiVoiceCallLogPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1554,6 +1681,7 @@ export interface Prisma__ScheduledCommunicationClient<T, Null = never, ExtArgs e
   claim<T extends Prisma.ClaimDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClaimDefaultArgs<ExtArgs>>): Prisma.Prisma__ClaimClient<runtime.Types.Result.GetResult<Prisma.$ClaimPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   dunningStep<T extends Prisma.ScheduledCommunication$dunningStepArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScheduledCommunication$dunningStepArgs<ExtArgs>>): Prisma.Prisma__DunningStepClient<runtime.Types.Result.GetResult<Prisma.$DunningStepPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   approvedByUser<T extends Prisma.ScheduledCommunication$approvedByUserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScheduledCommunication$approvedByUserArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  aiVoiceCallLog<T extends Prisma.ScheduledCommunication$aiVoiceCallLogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScheduledCommunication$aiVoiceCallLogArgs<ExtArgs>>): Prisma.Prisma__AiVoiceCallLogClient<runtime.Types.Result.GetResult<Prisma.$AiVoiceCallLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2033,6 +2161,25 @@ export type ScheduledCommunication$approvedByUserArgs<ExtArgs extends runtime.Ty
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * ScheduledCommunication.aiVoiceCallLog
+ */
+export type ScheduledCommunication$aiVoiceCallLogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiVoiceCallLog
+   */
+  select?: Prisma.AiVoiceCallLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiVoiceCallLog
+   */
+  omit?: Prisma.AiVoiceCallLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiVoiceCallLogInclude<ExtArgs> | null
+  where?: Prisma.AiVoiceCallLogWhereInput
 }
 
 /**

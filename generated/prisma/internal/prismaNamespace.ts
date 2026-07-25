@@ -401,6 +401,8 @@ export const ModelName = {
   MessageTemplate: 'MessageTemplate',
   NegotiationRule: 'NegotiationRule',
   IncomingDeposit: 'IncomingDeposit',
+  AiVoiceSettings: 'AiVoiceSettings',
+  AiVoiceCallLog: 'AiVoiceCallLog',
   PaymentScheduleItem: 'PaymentScheduleItem'
 } as const
 
@@ -417,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "user" | "debtor" | "claim" | "payment" | "claimAnalysis" | "dunningRule" | "dunningStep" | "scheduledCommunication" | "negotiationAccessToken" | "paymentPlanProposal" | "activityLog" | "note" | "complianceFlag" | "messageTemplate" | "negotiationRule" | "incomingDeposit" | "paymentScheduleItem"
+    modelProps: "organization" | "user" | "debtor" | "claim" | "payment" | "claimAnalysis" | "dunningRule" | "dunningStep" | "scheduledCommunication" | "negotiationAccessToken" | "paymentPlanProposal" | "activityLog" | "note" | "complianceFlag" | "messageTemplate" | "negotiationRule" | "incomingDeposit" | "aiVoiceSettings" | "aiVoiceCallLog" | "paymentScheduleItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1679,6 +1681,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AiVoiceSettings: {
+      payload: Prisma.$AiVoiceSettingsPayload<ExtArgs>
+      fields: Prisma.AiVoiceSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AiVoiceSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AiVoiceSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.AiVoiceSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AiVoiceSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.AiVoiceSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.AiVoiceSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.AiVoiceSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AiVoiceSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.AiVoiceSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>
+        }
+        update: {
+          args: Prisma.AiVoiceSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.AiVoiceSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AiVoiceSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AiVoiceSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.AiVoiceSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.AiVoiceSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAiVoiceSettings>
+        }
+        groupBy: {
+          args: Prisma.AiVoiceSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiVoiceSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AiVoiceSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiVoiceSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
+    AiVoiceCallLog: {
+      payload: Prisma.$AiVoiceCallLogPayload<ExtArgs>
+      fields: Prisma.AiVoiceCallLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AiVoiceCallLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AiVoiceCallLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>
+        }
+        findFirst: {
+          args: Prisma.AiVoiceCallLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AiVoiceCallLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>
+        }
+        findMany: {
+          args: Prisma.AiVoiceCallLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>[]
+        }
+        create: {
+          args: Prisma.AiVoiceCallLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>
+        }
+        createMany: {
+          args: Prisma.AiVoiceCallLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AiVoiceCallLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>[]
+        }
+        delete: {
+          args: Prisma.AiVoiceCallLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>
+        }
+        update: {
+          args: Prisma.AiVoiceCallLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.AiVoiceCallLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AiVoiceCallLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AiVoiceCallLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.AiVoiceCallLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiVoiceCallLogPayload>
+        }
+        aggregate: {
+          args: Prisma.AiVoiceCallLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAiVoiceCallLog>
+        }
+        groupBy: {
+          args: Prisma.AiVoiceCallLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiVoiceCallLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AiVoiceCallLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiVoiceCallLogCountAggregateOutputType> | number
+        }
+      }
+    }
     PaymentScheduleItem: {
       payload: Prisma.$PaymentScheduleItemPayload<ExtArgs>
       fields: Prisma.PaymentScheduleItemFieldRefs
@@ -2108,6 +2258,41 @@ export const IncomingDepositScalarFieldEnum = {
 } as const
 
 export type IncomingDepositScalarFieldEnum = (typeof IncomingDepositScalarFieldEnum)[keyof typeof IncomingDepositScalarFieldEnum]
+
+
+export const AiVoiceSettingsScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  enabled: 'enabled',
+  telephonyProvider: 'telephonyProvider',
+  speechProvider: 'speechProvider',
+  callerName: 'callerName',
+  callWindowStartHour: 'callWindowStartHour',
+  callWindowEndHour: 'callWindowEndHour',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AiVoiceSettingsScalarFieldEnum = (typeof AiVoiceSettingsScalarFieldEnum)[keyof typeof AiVoiceSettingsScalarFieldEnum]
+
+
+export const AiVoiceCallLogScalarFieldEnum = {
+  id: 'id',
+  claimId: 'claimId',
+  scheduledCommunicationId: 'scheduledCommunicationId',
+  outcome: 'outcome',
+  identityVerified: 'identityVerified',
+  transcript: 'transcript',
+  summary: 'summary',
+  detectedComplianceFlag: 'detectedComplianceFlag',
+  transferredToHuman: 'transferredToHuman',
+  paymentPromiseDate: 'paymentPromiseDate',
+  paymentPromiseAmount: 'paymentPromiseAmount',
+  modelUsed: 'modelUsed',
+  durationSeconds: 'durationSeconds',
+  startedAt: 'startedAt'
+} as const
+
+export type AiVoiceCallLogScalarFieldEnum = (typeof AiVoiceCallLogScalarFieldEnum)[keyof typeof AiVoiceCallLogScalarFieldEnum]
 
 
 export const PaymentScheduleItemScalarFieldEnum = {
@@ -2550,6 +2735,48 @@ export type ListEnumComplianceFlagTypeFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
+ * Reference to a field of type 'VoiceTelephonyProvider'
+ */
+export type EnumVoiceTelephonyProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceTelephonyProvider'>
+    
+
+
+/**
+ * Reference to a field of type 'VoiceTelephonyProvider[]'
+ */
+export type ListEnumVoiceTelephonyProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceTelephonyProvider[]'>
+    
+
+
+/**
+ * Reference to a field of type 'VoiceSpeechProvider'
+ */
+export type EnumVoiceSpeechProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceSpeechProvider'>
+    
+
+
+/**
+ * Reference to a field of type 'VoiceSpeechProvider[]'
+ */
+export type ListEnumVoiceSpeechProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VoiceSpeechProvider[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AiVoiceCallOutcome'
+ */
+export type EnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiVoiceCallOutcome'>
+    
+
+
+/**
+ * Reference to a field of type 'AiVoiceCallOutcome[]'
+ */
+export type ListEnumAiVoiceCallOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiVoiceCallOutcome[]'>
+    
+
+
+/**
  * Reference to a field of type 'PaymentScheduleItemStatus'
  */
 export type EnumPaymentScheduleItemStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentScheduleItemStatus'>
@@ -2689,6 +2916,8 @@ export type GlobalOmitConfig = {
   messageTemplate?: Prisma.MessageTemplateOmit
   negotiationRule?: Prisma.NegotiationRuleOmit
   incomingDeposit?: Prisma.IncomingDepositOmit
+  aiVoiceSettings?: Prisma.AiVoiceSettingsOmit
+  aiVoiceCallLog?: Prisma.AiVoiceCallLogOmit
   paymentScheduleItem?: Prisma.PaymentScheduleItemOmit
 }
 
