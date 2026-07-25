@@ -70,7 +70,7 @@ function drawCover(ctx: Ctx, dateStr: string): void {
   const bandHeight = 156;
   ctx.page.drawRectangle({ x: 0, y: PAGE_HEIGHT - bandHeight, width: PAGE_WIDTH, height: bandHeight, color: NAVY });
   ctx.page.drawRectangle({ x: 0, y: PAGE_HEIGHT - bandHeight, width: 6, height: bandHeight, color: BLUE });
-  ctx.page.drawText("AI債権回収プラットフォーム", {
+  ctx.page.drawText("債権自動回収システム", {
     x: MARGIN_X,
     y: PAGE_HEIGHT - 72,
     size: 22,
@@ -201,7 +201,7 @@ function drawFooters(doc: PDFDocument, font: PDFFont): void {
       thickness: 0.5,
       color: rgb(0.85, 0.87, 0.9),
     });
-    p.drawText("AI債権回収プラットフォーム 利用ガイド", { x: MARGIN_X, y: 28, size: 8, font, color: SLATE_MUTED });
+    p.drawText("債権自動回収システム 利用ガイド", { x: MARGIN_X, y: 28, size: 8, font, color: SLATE_MUTED });
     p.drawText(pageText, {
       x: PAGE_WIDTH - MARGIN_X - pageTextWidth,
       y: 28,
@@ -234,7 +234,7 @@ async function main() {
 
   h1(ctx, "ログイン方法", false);
   paragraph(ctx, "ブラウザで以下のURLを開き、デモアカウントでログインしてください(全員共通パスワード: demo1234)。");
-  paragraph(ctx, "URL: http://localhost:3000");
+  paragraph(ctx, "URL: https://app-production-e0c7.up.railway.app");
   spacer(ctx, 4);
   bullet(ctx, "デモ信用金庫 / yamada.taro@demo-shinkin.example / 管理者");
   bullet(ctx, "デモ信用金庫 / sato.hanako@demo-shinkin.example / 担当者");
