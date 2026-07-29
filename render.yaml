@@ -34,30 +34,8 @@ services:
       - key: SMTP_PORT
         sync: false
 
-  - type: worker
-    name: debt-collection-worker
-    runtime: docker
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
-    plan: free # If Render doesn't offer "free" for background workers, this is the one service you may need to bump to Starter.
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: SERVICE_ROLE
-        value: worker
-      - key: DATABASE_URL
-        fromDatabase:
-          name: debt-collection-db
-          property: connectionString
-      - key: JWT_SECRET
-        sync: false # Must match the web service's value exactly.
-      - key: APP_BASE_URL
-        sync: false # Must match the web service's value exactly.
-      - key: AI_MODEL
-        value: claude-sonnet-5
-      - key: ANTHROPIC_API_KEY
-        sync: false
-      - key: SMTP_HOST
-        sync: false
-      - key: SMTP_PORT
-        sync: false
+# The dunning worker (SERVICE_ROLE=worker, see docker-entrypoint.sh) needs a
+# "background worker" service, which Render's free plan doesn't offer. It's
+# intentionally omitted here so the rest of the app can deploy on the free
+# tier; add it back (copy the block from git history) on a paid plan once
+# automatic dunning email sending is needed.
