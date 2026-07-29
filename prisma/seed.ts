@@ -10,7 +10,9 @@ import { createPaymentForClaim } from "../lib/payments/createPaymentForClaim";
 import { seedBulkDemoData } from "./seedBulk";
 import type { $Enums } from "../generated/prisma/client";
 
-const DEMO_PASSWORD = "demo1234";
+// Overridable so the public demo deployment can use a strong, non-public
+// password while local Docker Compose usage keeps the documented default.
+const DEMO_PASSWORD = process.env.DEMO_PASSWORD || "demo1234";
 let nextVirtualAccountNumber = 9000000001;
 
 interface DebtorSeed {
